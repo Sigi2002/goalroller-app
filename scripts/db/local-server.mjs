@@ -28,6 +28,7 @@ const pg = new EmbeddedPostgres({
   user,
   password,
   authMethod: "scram-sha-256",
+  initdbFlags: ["--encoding=UTF8", "--locale=C"],
   // Never delete the data on stop — this is somebody's development database,
   // and `stop` is what happens at the end of every working day.
   persistent: true,

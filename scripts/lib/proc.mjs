@@ -81,9 +81,9 @@ export function whichCommand(command) {
   if (name.includes("/") || name.includes("\\")) return runnable(name) ? name : null;
 
   const directories = (process.env.PATH || "").split(delimiter).filter(Boolean);
-  // The name as written first — for whoever typed `npm.cmd` themselves — then
-  // the extensions Windows would have tried on their behalf.
-  const suffixes = isWindows ? ["", ...pathExtensions()] : [""];
+  // On Windows, executable extensions must precede an extensionless file
+  // (Node's npm install provides both an extensionless Unix shim and npm.cmd).
+  const suffixes = isWindows ? [...pathExtensions(), ""] : [""];
   for (const directory of directories) {
     for (const suffix of suffixes) {
       const candidate = join(directory, name + suffix);
