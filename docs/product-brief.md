@@ -7,7 +7,7 @@ gewichtete Zufallsentscheidung abzuleiten.
 
 Nutzer wählen den Spielmodus und geben die Siegquote des Favoriten ein. Im
 Fußballmodus wählen sie Heim- oder Auswärtsfavorit und erhalten den passenden
-farbigen W12 mit einem Ergebnis:
+farbigen GoalRoller-Würfel mit einem Ergebnis:
 
 - Gelb, 1,25–1,44: 9 Seiten „1“, 2 „X“, 1 „2“.
 - Grün, 1,45–1,64: 8 Seiten „1“, 2 „X“, 2 „2“.
@@ -28,8 +28,8 @@ Favoritensieg; eine 2 bedeutet Außenseitersieg.
 ## Erste Version
 
 - Auswahl zwischen 1-X-2-Fußballtipps und Duellen mit zwei Möglichkeiten.
-- Quoteingabe mit Punkt oder Komma und automatische Auswahl des passenden W12
-  samt modeabhängigem Quotenbereich.
+- Quoteingabe mit Punkt oder Komma und automatische Auswahl des passenden
+  GoalRoller-Würfels samt modeabhängigem Quotenbereich.
 - Auswahl der Favoritenposition, Wurfanimation und verständlicher Tipp für beide
   Modi.
 - Teilen oder Kopieren des Ergebnisses; Quote und Würfelergebnis werden nicht

@@ -146,7 +146,7 @@
     "title": "GoalRoller",
     "subtitle": "Wähle den Spielmodus und würfle deinen passenden Tipp.",
     "setupTitle": "Deinen Tipp vorbereiten",
-    "setupBody": "Die Quote wählt automatisch den passenden W12. Dein Ergebnis wird nicht gespeichert.",
+    "setupBody": "Die Quote wählt automatisch den passenden GoalRoller-Würfel. Dein Ergebnis wird nicht gespeichert.",
     "favoriteLabel": "Wer ist der Favorit?",
     "homeTeamLabel": "Heim",
     "homeTeamPlaceholder": "Heimteam",
@@ -201,11 +201,11 @@
     "accessLost": "Dein GoalRoller-Zugang ist nicht mehr aktiv. Lade die Seite neu oder wende dich an den Betreiber.",
     "activationFailed": "Dein erster Wurf konnte gerade nicht bestätigt werden. Bitte versuche es noch einmal.",
     "dice": {
-      "yellow": "Gelber W12",
-      "green": "Grüner W12",
-      "red": "Roter W12",
-      "blue": "Blauer W12",
-      "black": "Schwarzer W12"
+      "yellow": "Gelber GoalRoller-Würfel",
+      "green": "Grüner GoalRoller-Würfel",
+      "red": "Roter GoalRoller-Würfel",
+      "blue": "Blauer GoalRoller-Würfel",
+      "black": "Schwarzer GoalRoller-Würfel"
     }
   },
   "onboarding": {

@@ -502,9 +502,9 @@ export function GoalrollerTool() {
                   y="123"
                   fill={die.textColor}
                   textAnchor="middle"
-                  className="goalroller-die__symbol"
+                  className={`goalroller-die__symbol${shownOutcome ? "" : " goalroller-die__brand"}`}
                 >
-                  {shownOutcome ?? "W12"}
+                  {shownOutcome ?? "GoalRoller"}
                 </text>
               </svg>
               <div className="space-y-1">

@@ -146,7 +146,7 @@
     "title": "GoalRoller",
     "subtitle": "Choisis le mode de jeu et lance le pronostic correspondant.",
     "setupTitle": "Prépare ton pronostic",
-    "setupBody": "La cote sélectionne automatiquement le dé W12 correspondant. Le résultat n'est pas enregistré.",
+    "setupBody": "La cote sélectionne automatiquement le dé GoalRoller correspondant. Le résultat n'est pas enregistré.",
     "favoriteLabel": "Quelle équipe est favorite ?",
     "homeTeamLabel": "Domicile",
     "homeTeamPlaceholder": "Équipe à domicile",
@@ -201,11 +201,11 @@
     "accessLost": "Ton accès à GoalRoller n'est plus actif. Recharge la page ou contacte l'opérateur.",
     "activationFailed": "Ton premier lancer n'a pas pu être confirmé. Réessaie.",
     "dice": {
-      "yellow": "Dé W12 jaune",
-      "green": "Dé W12 vert",
-      "red": "Dé W12 rouge",
-      "blue": "Dé W12 bleu",
-      "black": "Dé W12 noir"
+      "yellow": "Dé GoalRoller jaune",
+      "green": "Dé GoalRoller vert",
+      "red": "Dé GoalRoller rouge",
+      "blue": "Dé GoalRoller bleu",
+      "black": "Dé GoalRoller noir"
     }
   },
   "onboarding": {

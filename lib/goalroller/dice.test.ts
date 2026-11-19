@@ -26,7 +26,7 @@ function contrastRatio(a: string, b: string): number {
   return (values[0] + 0.05) / (values[1] + 0.05);
 }
 
-describe("GoalRoller W12", () => {
+describe("GoalRoller dice", () => {
   it("uses exactly twelve sides with the specified distributions", () => {
     expect(DICE.map((die) => die.faces.length)).toEqual([12, 12, 12, 12, 12]);
     expect(DICE.map(faceCounts)).toEqual([

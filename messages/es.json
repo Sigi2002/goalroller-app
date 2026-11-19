@@ -146,7 +146,7 @@
     "title": "GoalRoller",
     "subtitle": "Elige el modo de juego y lanza el pronóstico correspondiente.",
     "setupTitle": "Prepara tu pronóstico",
-    "setupBody": "La cuota selecciona automáticamente el dado W12 correspondiente. El resultado no se guarda.",
+    "setupBody": "La cuota selecciona automáticamente el dado GoalRoller correspondiente. El resultado no se guarda.",
     "favoriteLabel": "¿Qué equipo es el favorito?",
     "homeTeamLabel": "Local",
     "homeTeamPlaceholder": "Equipo local",
@@ -201,11 +201,11 @@
     "accessLost": "Tu acceso a GoalRoller ya no está activo. Recarga la página o ponte en contacto con el operador.",
     "activationFailed": "No se ha podido confirmar tu primer lanzamiento. Vuelve a intentarlo.",
     "dice": {
-      "yellow": "W12 amarillo",
-      "green": "W12 verde",
-      "red": "W12 rojo",
-      "blue": "W12 azul",
-      "black": "W12 negro"
+      "yellow": "Dado GoalRoller amarillo",
+      "green": "Dado GoalRoller verde",
+      "red": "Dado GoalRoller rojo",
+      "blue": "Dado GoalRoller azul",
+      "black": "Dado GoalRoller negro"
     }
   },
   "onboarding": {

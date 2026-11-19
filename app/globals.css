@@ -382,6 +382,10 @@
   font-weight: 800;
 }
 
+.goalroller-die__brand {
+  font-size: 1.2rem;
+}
+
 .goalroller-die--rolling {
   animation: goalroller-roll 1s ease-in-out;
 }

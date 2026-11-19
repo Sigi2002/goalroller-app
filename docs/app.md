@@ -18,8 +18,9 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
 - **Output artifact:** ein teilbarer oder kopierbarer 1-X-2- oder Duell-Tipp auf
   Grundlage der eingegebenen Quote und der gewählten Favoritenposition.
 - **Alongside the customer:** GoalRoller wählt je nach Modus den Quotenbereich,
-  würfelt aus den zwölf Seiten des passenden W12 und ordnet das Ergebnis dem
-  Heim-/Auswärtstipp oder dem Tipp für A/B zu. Es gibt keine KI-Beratung.
+  würfelt aus den zwölf Seiten des passenden GoalRoller-Würfels und ordnet
+  das Ergebnis dem Heim-/Auswärtstipp oder dem Tipp für A/B zu. Es gibt keine
+  KI-Beratung.
 - **Activation:** der erste erfolgreiche Wurf; `goalroller_activations` speichert
   dafür nur den Zeitpunkt.
 - **Return:** einmaliges Werkzeug ohne gemessene Wiederkehr; weitere Würfe
@@ -30,11 +31,12 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
 ### GoalRoller-Würfel — `/dashboard/goalroller`
 
 - **Does:** bietet Fußballtipps (1/X/2) und Duelle mit zwei Möglichkeiten an.
-  Je nach Modus wählt es den passenden W12, zeigt dessen zwölfseitige Verteilung,
-  würfelt animiert und bietet das Ergebnis zum Teilen oder Kopieren an.
+  Je nach Modus wählt es den passenden GoalRoller-Würfel, zeigt dessen
+  zwölfseitige Verteilung, würfelt animiert und bietet das Ergebnis zum Teilen
+  oder Kopieren an.
 - **Done when:** Ein Nutzer kann den Modus wählen, die Quote und
-  Favoritenposition eingeben, mit dem passenden W12 würfeln und den zugehörigen
-  Tipp sehen und teilen.
+  Favoritenposition eingeben, mit dem passenden GoalRoller-Würfel würfeln und
+  den zugehörigen Tipp sehen und teilen.
 - **Access:** `hasPlan(memberId, "goalroller")`
 - **Data:** `goalroller_activations` (`db/schema-goalroller.ts`,
   `drizzle/0011_open_junta.sql`); Mannschaftsnamen, Quote,
@@ -52,7 +54,7 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
   gewichteter Zufallswurf aus den vorgegebenen zwölf Seiten; gespeichert wird
   nur der Zeitpunkt des ersten erfolgreichen Wurfs.
 - Der Duell-Modus nutzt dieselben zwölf Würfelseiten mit eigenen Quotenbereichen;
-  der schwarze W12 ist dort ausgeblendet.
+  der schwarze GoalRoller-Würfel ist dort ausgeblendet.
 - Der physische Würfel ist nicht Teil dieses Angebots; verkauft werden soll
   ausschließlich der digitale Webzugang.
 - Preis und Digistore24-Produkt sind noch offen. Das GoalRoller-Angebot ist

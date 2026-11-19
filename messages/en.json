@@ -146,7 +146,7 @@
     "title": "GoalRoller",
     "subtitle": "Choose a game mode and roll the matching tip.",
     "setupTitle": "Set up your tip",
-    "setupBody": "The odds automatically select the matching W12. Your result is not stored.",
+    "setupBody": "The odds automatically select the matching GoalRoller die. Your result is not stored.",
     "favoriteLabel": "Which team is the favourite?",
     "homeTeamLabel": "Home",
     "homeTeamPlaceholder": "Home team",
@@ -201,11 +201,11 @@
     "accessLost": "Your GoalRoller access is no longer active. Reload the page or contact the operator.",
     "activationFailed": "Your first roll could not be confirmed just now. Please try again.",
     "dice": {
-      "yellow": "Yellow W12",
-      "green": "Green W12",
-      "red": "Red W12",
-      "blue": "Blue W12",
-      "black": "Black W12"
+      "yellow": "Yellow GoalRoller die",
+      "green": "Green GoalRoller die",
+      "red": "Red GoalRoller die",
+      "blue": "Blue GoalRoller die",
+      "black": "Black GoalRoller die"
     }
   },
   "onboarding": {

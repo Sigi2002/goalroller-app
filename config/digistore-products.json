@@ -117,7 +117,7 @@
     },
     "goalroller": {
       "name": "GoalRoller",
-      "tagline": "Dein digitaler Fußball-W12",
+      "tagline": "Dein digitaler GoalRoller",
       "description": "Einmaliger Zugang zum GoalRoller-Tippwerkzeug. Preis und Digistore24-Produkt werden vor dem Verkauf festgelegt.",
       "kind": "one_time",
       "paymentOptions": {
@@ -125,7 +125,7 @@
       },
       "currency": "EUR",
       "features": [
-        "Fünf W12-Würfel passend zur Favoritenquote",
+        "Fünf farbige GoalRoller-Würfel passend zur Favoritenquote",
         "Heim- und Auswärtsfavorit",
         "Tipp teilen oder kopieren"
       ],
