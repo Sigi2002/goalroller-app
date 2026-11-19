@@ -659,7 +659,7 @@ describe("every upload door enters the outer guard", () => {
     const hits: string[] = [];
     const walk = (dir: string) => {
       for (const entry of readdirSync(join(ROOT, dir), { withFileTypes: true })) {
-        const rel = join(dir, entry.name);
+        const rel = join(dir, entry.name).replaceAll("\\", "/");
         if (entry.isDirectory()) {
           if (entry.name === "node_modules") continue;
           walk(rel);

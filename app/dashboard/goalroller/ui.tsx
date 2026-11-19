@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
+import { Figure } from "@/components/ui/figure";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -29,7 +30,12 @@ import {
   type Outcome,
 } from "@/lib/goalroller/dice";
 import { recordFirstSuccessfulRoll } from "./actions";
-import { withMatchLine } from "./share-text";
+import { displayOutcomeText, withMatchLine } from "./share-text";
+import {
+  goalrollerRollImageAssetFor,
+  goalrollerPreviewImageFor,
+  type GoalrollerRollImageUrls,
+} from "./roll-images";
 
 type RollResult = {
   mode: GameMode;
@@ -43,7 +49,11 @@ type RollResult = {
   duelVerdict: "favoriteWin" | "underdogWin" | null;
 };
 
-export function GoalrollerTool() {
+type GoalrollerToolProps = {
+  imageUrls: GoalrollerRollImageUrls;
+};
+
+export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
   const t = useTranslations("goalroller");
   const locale = useLocale();
   const [mode, setMode] = useState<GameMode>("football");
@@ -128,13 +138,14 @@ export function GoalrollerTool() {
         intervalRef.current = null;
       }
       timeoutRef.current = null;
-      setRolling(false);
-      setSaving(true);
 
       const outcome =
         selectedDie.faces[
           Math.floor(Math.random() * selectedDie.faces.length)
         ];
+      setShownOutcome(outcome);
+      setRolling(false);
+      setSaving(true);
       let tip: Outcome;
       let awayNotice: RollResult["awayNotice"] = null;
       let duelVerdict: RollResult["duelVerdict"] = null;
@@ -155,6 +166,7 @@ export function GoalrollerTool() {
       void recordFirstSuccessfulRoll()
         .then((response) => {
           if (!response.ok) {
+            setShownOutcome(null);
             setFeedback({
               variant: "danger",
               message: t("accessLost"),
@@ -177,13 +189,14 @@ export function GoalrollerTool() {
         })
         .catch((error: unknown) => {
           console.error("[goalroller] Could not record first-roll activation", error);
+          setShownOutcome(null);
           setFeedback({
             variant: "danger",
             message: t("activationFailed"),
           });
         })
         .finally(() => setSaving(false));
-    }, 1000);
+    }, 3000);
   }
 
   function resultText(value: RollResult): string {
@@ -208,7 +221,11 @@ export function GoalrollerTool() {
       one: value.counts["1"],
       draw: value.counts.X,
       two: value.counts["2"],
-      result: value.outcome,
+      result: displayOutcomeText(
+        value.mode,
+        value.outcome,
+        t("duelDrawResult"),
+      ),
       tip: tipLabel,
     };
 
@@ -260,6 +277,22 @@ export function GoalrollerTool() {
 
   const dieName = die ? dieLabel(die.id) : null;
   const counts = die ? faceCounts(die) : null;
+  const displayedImage =
+    (result
+      ? { dieId: result.dieId, outcome: result.outcome }
+      : null) ?? goalrollerPreviewImageFor(die?.id ?? null, shownOutcome);
+  const displayedImageAsset = displayedImage
+    ? goalrollerRollImageAssetFor(
+        displayedImage.dieId,
+        displayedImage.outcome,
+      )
+    : null;
+  const displayedImageUrl = displayedImage
+    ? imageUrls[displayedImage.dieId]?.[displayedImage.outcome]
+    : null;
+  const displayedOutcomeText = result
+    ? displayOutcomeText(result.mode, result.outcome, t("duelDrawResult"))
+    : null;
   const tipLabel = result
     ? result.mode === "duels" && result.duelVerdict
       ? t(
@@ -468,45 +501,60 @@ export function GoalrollerTool() {
           {die && counts && dieName ? (
             <div className="flex flex-col items-center justify-center gap-4 rounded-xl border bg-muted/40 p-5 text-center">
               <p className="text-sm font-semibold">{t("selectedDie")}</p>
-              <svg
-                aria-label={t("dieAria", {
-                  die: dieName,
-                  min: formatOdds(
-                    parsed.ok ? parsed.range.minCents : die.minCents,
-                  ),
-                  max: formatOdds(
-                    parsed.ok ? parsed.range.maxCents : die.maxCents,
-                  ),
-                })}
-                className={`goalroller-die${rolling ? " goalroller-die--rolling" : ""}${result ? " goalroller-die--landed" : ""}`}
-                role="img"
-                viewBox="0 0 220 220"
-              >
-                <polygon
-                  points="110,8 158,21 194,57 208,110 194,163 158,199 110,212 62,199 26,163 12,110 26,57 62,21"
-                  fill={die.color}
-                  stroke={die.textColor}
-                  strokeWidth="4"
-                  strokeLinejoin="round"
+              {displayedImage && displayedImageAsset && displayedImageUrl ? (
+                <Figure
+                  src={displayedImageUrl}
+                  alt={t("dieImageAlt", {
+                    die: dieLabel(displayedImage.dieId),
+                    outcome: displayedImage.outcome,
+                  })}
+                  width={displayedImageAsset.width}
+                  height={displayedImageAsset.height}
+                  sizes="224px"
+                  unoptimized
+                  className={`goalroller-die${rolling ? " goalroller-die--rolling" : ""}${result ? " goalroller-die--landed" : ""}`}
                 />
-                <path
-                  d="M110 10 151 66 203 71 168 110 194 160 145 153 110 210 75 153 26 160 52 110 17 71 69 66Z M69 66 110 110 151 66 M52 110 110 110 168 110 M75 153 110 110 145 153"
-                  fill="none"
-                  stroke={die.textColor}
-                  strokeOpacity=".36"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <text
-                  x="110"
-                  y="123"
-                  fill={die.textColor}
-                  textAnchor="middle"
-                  className={`goalroller-die__symbol${shownOutcome ? "" : " goalroller-die__brand"}`}
+              ) : (
+                <svg
+                  aria-label={t("dieAria", {
+                    die: dieName,
+                    min: formatOdds(
+                      parsed.ok ? parsed.range.minCents : die.minCents,
+                    ),
+                    max: formatOdds(
+                      parsed.ok ? parsed.range.maxCents : die.maxCents,
+                    ),
+                  })}
+                  className={`goalroller-die${rolling ? " goalroller-die--rolling" : ""}${result ? " goalroller-die--landed" : ""}`}
+                  role="img"
+                  viewBox="0 0 220 220"
                 >
-                  {shownOutcome ?? "GoalRoller"}
-                </text>
-              </svg>
+                  <polygon
+                    points="110,8 158,21 194,57 208,110 194,163 158,199 110,212 62,199 26,163 12,110 26,57 62,21"
+                    fill={die.color}
+                    stroke={die.textColor}
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M110 10 151 66 203 71 168 110 194 160 145 153 110 210 75 153 26 160 52 110 17 71 69 66Z M69 66 110 110 151 66 M52 110 110 110 168 110 M75 153 110 110 145 153"
+                    fill="none"
+                    stroke={die.textColor}
+                    strokeOpacity=".36"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  <text
+                    x="110"
+                    y="123"
+                    fill={die.textColor}
+                    textAnchor="middle"
+                    className={`goalroller-die__symbol${shownOutcome ? "" : " goalroller-die__brand"}`}
+                  >
+                    {shownOutcome ?? "GoalRoller"}
+                  </text>
+                </svg>
+              )}
               <div className="space-y-1">
                 <p className="font-semibold">{dieName}</p>
                 <p className="text-muted-foreground text-sm">
@@ -557,7 +605,7 @@ export function GoalrollerTool() {
                   {t("outcomeLabel")}
                 </p>
                 <p className="text-3xl font-semibold tabular-nums">
-                  {result.outcome}
+                  {displayedOutcomeText}
                 </p>
               </div>
               <div>

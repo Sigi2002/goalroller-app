@@ -40,6 +40,7 @@ function fakeFetch(answer: unknown) {
 const ok = { status: 200, text: async () => "OK" };
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const PROCESS_TEST_CWD = process.cwd();
 
 // Real children for the process tests, ended after each test whatever happened.
 const spawned: ReturnType<typeof spawn>[] = [];
@@ -58,6 +59,7 @@ afterEach(() => {
 function longRunning() {
   const child = spawn(process.execPath, ["-e", "setInterval(() => {}, 1000)"], {
     stdio: "ignore",
+    cwd: PROCESS_TEST_CWD,
   });
   spawned.push(child);
   return child;
@@ -218,7 +220,7 @@ describe("tunnel state", () => {
     const stubborn = spawn(
       process.execPath,
       ["-e", "process.on('SIGTERM', () => {}); setInterval(() => {}, 1000)"],
-      { stdio: "ignore" },
+      { stdio: "ignore", cwd: PROCESS_TEST_CWD },
     );
     spawned.push(stubborn);
     await sleep(300); // let the handler register
@@ -362,20 +364,24 @@ describe("stopPid", () => {
   });
 
   it("insists with SIGKILL when the process ignores a polite request", async () => {
-    // A child that swallows SIGTERM — cloudflared does shut down, but a wedged
-    // process must not leave the machine published either.
-    const child = spawn(
-      process.execPath,
-      ["-e", "process.on('SIGTERM', () => {}); setInterval(() => {}, 1000)"],
-      { stdio: "ignore" },
-    );
-    spawned.push(child);
-    await new Promise((r) => setTimeout(r, 300)); // let the handler register
+    // Simulate a child that ignores SIGTERM; Windows terminates it immediately
+    // for either signal, so a real child cannot exercise escalation portably.
+    const pid = 424242;
+    const alive = new Set([pid]);
+    const kill = vi.spyOn(process, "kill").mockImplementation((target, signal) => {
+      if (!alive.has(target)) throw Object.assign(new Error("ESRCH"), { code: "ESRCH" });
+      if (signal === "SIGKILL") alive.delete(target);
+      return true;
+    });
 
-    const outcome = await stopPid(child.pid, { graceMs: 500 });
-
-    expect(outcome).toBe("killed");
-    expect(processAlive(child.pid)).toBe(false);
+    try {
+      const outcome = await stopPid(pid, { graceMs: 10, killMs: 10, stepMs: 1 });
+      expect(outcome).toBe("killed");
+      expect(kill).toHaveBeenCalledWith(pid, "SIGKILL");
+      expect(alive.has(pid)).toBe(false);
+    } finally {
+      kill.mockRestore();
+    }
   });
 
   it("treats an already-dead process as done, not as a failure", async () => {

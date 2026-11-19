@@ -52,7 +52,7 @@ export const NO_BRAND: Brand = {
 /**
  * The one place a brand asset path is judged.
  *
- * Under `public/brand/` and nowhere else, and one of three extensions. Both
+ * Under `public/brand/` and nowhere else, and one of five extensions. Both
  * halves are load-bearing rather than tidy: the folder is what
  * `next.config.ts` hangs its locked-down headers on, and the extension list is
  * what keeps `.html` — a document with the same scripting powers as an SVG and
@@ -63,7 +63,7 @@ function assetPath(value: unknown): string | null {
   const path = value.trim();
   if (!path.startsWith("/brand/")) return null;
   if (path.includes("..")) return null;
-  return /\.(svg|png|webp)$/i.test(path) ? path : null;
+  return /\.(svg|png|jpe?g|webp)$/i.test(path) ? path : null;
 }
 
 function positiveInt(value: unknown): number {

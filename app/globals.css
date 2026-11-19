@@ -387,7 +387,7 @@
 }
 
 .goalroller-die--rolling {
-  animation: goalroller-roll 1s ease-in-out;
+  animation: goalroller-roll 3s ease-in-out;
 }
 
 .goalroller-die--landed {

@@ -31,7 +31,9 @@ Favoritensieg; eine 2 bedeutet Außenseitersieg.
 - Quoteingabe mit Punkt oder Komma und automatische Auswahl des passenden
   GoalRoller-Würfels samt modeabhängigem Quotenbereich.
 - Auswahl der Favoritenposition, Wurfanimation und verständlicher Tipp für beide
-  Modi.
+  Modi. Das Bild des ausgewählten Würfels erscheint direkt nach Eingabe einer
+  gültigen Quote; alle fünf Farben zeigen anschließend das passende Bild für
+  1, X oder 2.
 - Teilen oder Kopieren des Ergebnisses; Quote und Würfelergebnis werden nicht
   dauerhaft gespeichert.
 - Speicherung nur des Zeitpunkts des ersten erfolgreichen Wurfs pro Nutzer.

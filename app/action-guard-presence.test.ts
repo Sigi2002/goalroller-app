@@ -62,6 +62,7 @@ import { describe, expect, it } from "vitest";
 import { blankComments } from "@/scripts/lib/source-text.mjs";
 
 const ROOT = process.cwd();
+const relativePath = (path: string) => relative(ROOT, path).replaceAll("\\", "/");
 
 /**
  * The openers, counted off the code rather than guessed.
@@ -183,14 +184,14 @@ function firstAwait(body: string): string | null {
 function unguardedIn(files: ServerFile[], publicNames: readonly string[]): string[] {
   return files
     .flatMap((file) => actionsIn(file.source).map((action) => ({ ...action, path: file.path })))
-    .filter((action) => !publicNames.includes(`${relative(ROOT, action.path)}:${action.name}`))
+    .filter((action) => !publicNames.includes(`${relativePath(action.path)}:${action.name}`))
     .filter((action) => {
       const opener = firstAwait(action.body);
       return opener === null || !OPENERS.includes(opener);
     })
     .map(
       (action) =>
-        `${relative(ROOT, action.path)}:${action.name} (${firstAwait(action.body) ?? "nothing awaited"})`,
+        `${relativePath(action.path)}:${action.name} (${firstAwait(action.body) ?? "nothing awaited"})`,
     );
 }
 
@@ -227,7 +228,7 @@ describe.each(SURFACES)("$dir — every action opens with a guard", ({ dir, minF
 describe("the PUBLIC table cannot outlive what it excuses", () => {
   const known = new Set(
     [...serverFiles("app"), ...serverFiles("modules")].flatMap((file) =>
-      actionsIn(file.source).map((action) => `${relative(ROOT, file.path)}:${action.name}`),
+      actionsIn(file.source).map((action) => `${relativePath(file.path)}:${action.name}`),
     ),
   );
 

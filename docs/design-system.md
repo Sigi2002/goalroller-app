@@ -132,7 +132,7 @@ second face is worth the download.
 
 | File | Size | What it is | Written by |
 |---|---|---|---|
-| `public/brand/logo.svg` \| `.png` \| `.webp` | any; rendered 24 px in the shell, 36 px on `/login` | the mark in the header and above the sign-in heading | you, or `node run.mjs brand icons` |
+| `public/brand/logo.svg` \| `.png` \| `.jpg` \| `.jpeg` \| `.webp` | any; rendered 24 px in the shell, 36 px on `/login` | the mark in the header and above the sign-in heading | you, or `node run.mjs brand icons` |
 | `public/brand/logo-dark.*` | same | **optional** — only when the light mark disappears on the dark background | you |
 | `app/icon.png` | ~256×256 | the browser tab; picked up by file name, nothing to register | `brand icons` |
 | `app/apple-icon.png` | 180×180 | the iOS home screen | `brand icons` |

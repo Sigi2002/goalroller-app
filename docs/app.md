@@ -19,7 +19,8 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
   Grundlage der eingegebenen Quote und der gewählten Favoritenposition.
 - **Alongside the customer:** GoalRoller wählt je nach Modus den Quotenbereich,
   würfelt aus den zwölf Seiten des passenden GoalRoller-Würfels und ordnet
-  das Ergebnis dem Heim-/Auswärtstipp oder dem Tipp für A/B zu. Es gibt keine
+  das Ergebnis dem Heim-/Auswärtstipp oder dem Tipp für A/B zu. Der gelbe
+  GoalRoller zeigt für 1, X und 2 das passende Ergebnisbild. Es gibt keine
   KI-Beratung.
 - **Activation:** der erste erfolgreiche Wurf; `goalroller_activations` speichert
   dafür nur den Zeitpunkt.
@@ -31,16 +32,20 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
 ### GoalRoller-Würfel — `/dashboard/goalroller`
 
 - **Does:** bietet Fußballtipps (1/X/2) und Duelle mit zwei Möglichkeiten an.
-  Je nach Modus wählt es den passenden GoalRoller-Würfel, zeigt dessen
-  zwölfseitige Verteilung, würfelt animiert und bietet das Ergebnis zum Teilen
-  oder Kopieren an.
+  Je nach Modus wählt es den passenden GoalRoller-Würfel und zeigt dessen Bild
+  direkt bei einer gültigen Quote sowie die zwölfseitige Verteilung. Nach drei
+  Sekunden Animation zeigt es das Bild des gewürfelten Ergebnisses für 1, X
+  oder 2. Das Ergebnis lässt sich teilen oder kopieren.
 - **Done when:** Ein Nutzer kann den Modus wählen, die Quote und
   Favoritenposition eingeben, mit dem passenden GoalRoller-Würfel würfeln und
   den zugehörigen Tipp sehen und teilen.
 - **Access:** `hasPlan(memberId, "goalroller")`
 - **Data:** `goalroller_activations` (`db/schema-goalroller.ts`,
   `drizzle/0011_open_junta.sql`); Mannschaftsnamen, Quote,
-  Favoritenposition, Ergebnis und Tipp werden nicht gespeichert.
+  Favoritenposition, Ergebnis und Tipp werden nicht gespeichert. Die
+  Ergebnisbilder sind in `content/media/goalroller/` deklariert und über
+  `content/media-manifest.json` mit `visibility: "entitled"` am Product Key
+  `goalroller` gebunden.
 - **Costs tokens:** keine.
 - **Tests:** `lib/goalroller/dice.test.ts`, `lib/goalroller/config.test.ts`,
   `lib/entitlements/preview.test.ts`, `lib/privacy/export-shape.test.ts`,

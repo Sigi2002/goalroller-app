@@ -13,10 +13,11 @@
 // the four skip rules and the shape, which is what the walk actually promises —
 // and what the `live` rung and `smoke.mjs` both now depend on being one answer.
 import { describe, expect, it } from "vitest";
+import { fileURLToPath } from "node:url";
 
 import { collectPageRoutes } from "./routes.mjs";
 
-const ROOT = new URL("../../", import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL("../../", import.meta.url));
 const routes = collectPageRoutes({ cwd: ROOT });
 
 describe("collectPageRoutes", () => {

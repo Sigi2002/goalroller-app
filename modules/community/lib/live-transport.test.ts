@@ -40,7 +40,7 @@ const ROOT = path.join(import.meta.dirname, "..", "..", "..");
 function sources(dir: string): string[] {
   const full = path.join(ROOT, dir);
   return readdirSync(full, { withFileTypes: true }).flatMap((entry) => {
-    const rel = path.join(dir, entry.name);
+    const rel = path.posix.join(dir, entry.name);
     if (entry.isDirectory()) return sources(rel);
     return /\.tsx?$/.test(entry.name) ? [rel] : [];
   });

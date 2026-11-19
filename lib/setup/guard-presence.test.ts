@@ -15,7 +15,7 @@
 // remember to add it here, which is the property a list does not have.
 
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { basename, join, relative as relativePath } from "node:path";
 import { describe, expect, it } from "vitest";
 import { blankComments } from "@/scripts/lib/source-text.mjs";
 
@@ -78,10 +78,10 @@ describe("every setup handler goes through the one door", () => {
     // file that documents the rule. `scripts/lib/source-text.mjs` is the one
     // implementation of that, and writing a seventeenth regex here is refused.
     const source = blankComments(readFileSync(file, "utf8"));
-    const relative = file.slice(file.indexOf("app/api/setup"));
+    const relative = relativePath(process.cwd(), file).replaceAll("\\", "/");
 
     for (const handler of handlersIn(source)) {
-      const key = `${relative.split("/").pop()}:${handler.method}`;
+      const key = `${basename(file)}:${handler.method}`;
 
       it(`${relative} ${handler.method}() calls guardSetup()`, () => {
         if (EXEMPT[key]) {

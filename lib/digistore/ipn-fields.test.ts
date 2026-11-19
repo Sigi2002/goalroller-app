@@ -182,7 +182,7 @@ describe("the IPN fields this app reads", () => {
     for (const file of ipnReaders()) {
       for (const key of keysReadIn(file)) {
         read += 1;
-        const relative = file.slice(ROOT.length);
+        const relative = file.slice(ROOT.length).replaceAll("\\", "/").replace(/^\/+/, "");
         const allowed = ELSEWHERE[key];
         if (capturedKeys.has(key)) continue;
         if (allowed && (!allowed.onlyIn || relative === allowed.onlyIn)) continue;

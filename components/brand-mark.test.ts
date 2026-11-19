@@ -94,7 +94,7 @@ function scan(
       const full = join(dir, entry);
       if (statSync(full).isDirectory()) walk(full);
       else if (CODE.test(entry)) {
-        consider(relative(ROOT, full), readFileSync(full, "utf8"));
+        consider(relative(ROOT, full).replaceAll("\\", "/"), readFileSync(full, "utf8"));
       }
     }
   };
@@ -254,7 +254,7 @@ describe("config/brand.json does not lie", () => {
 
   it("keeps every asset under public/brand/ with an allowed extension", () => {
     for (const path of paths) {
-      expect(path).toMatch(/^\/brand\/[^.]*\.(svg|png|webp)$/i);
+      expect(path).toMatch(/^\/brand\/[^.]*\.(svg|png|jpe?g|webp)$/i);
     }
   });
 
@@ -322,5 +322,12 @@ describe("brand() falls towards no logo", () => {
       width: 512,
       height: 128,
     });
+  });
+
+  it.each(["jpg", "jpeg"])("accepts a .%s brand mark", async (extension) => {
+    const logo = `/brand/logo.${extension}`;
+    await expect(
+      read({ logo, logoWidth: 373, logoHeight: 248 }),
+    ).resolves.toMatchObject({ logo, logoDark: null, width: 373, height: 248 });
   });
 });

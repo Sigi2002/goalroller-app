@@ -159,7 +159,7 @@ function directClients(): { file: string; count: number }[] {
     const hits = (blankComments(readFileSync(file, "utf8")).match(
       /(?<![A-Za-z0-9_$.])postgres\(/g,
     ) ?? []).length;
-    if (hits > 0) found.push({ file: relative(ROOT, file), count: hits });
+    if (hits > 0) found.push({ file: relative(ROOT, file).replaceAll("\\", "/"), count: hits });
   }
   return found;
 }

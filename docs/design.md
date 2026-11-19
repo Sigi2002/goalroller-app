@@ -23,9 +23,16 @@ CLAUDE.md § UI or docs/ux.md._
 - **Headings:** Source Serif 4 — shipped, unchanged
 
 ## The mark
-- **Logo:** none supplied — the letter tile
-- **Dark variant:** not needed
-- **Icons generated:** no; no logo file was supplied
+- **Logo:** `public/brand/logo.jpg` — the supplied GoalRoller mark, shown in
+  the header and on the sign-in page
+- **Source:** `public/goalroller/goalroller-logo.jpg`
+- **Image notes:** 373 × 248 px, opaque JPEG. The generated 512 px icon
+  upscales it 1.4× and may look soft; padded icons use a flat background
+  sampled from the image corner.
+- **Dark variant:** not supplied; the colorful dice remain visible against the
+  mark's black background in dark mode
+- **Icons generated:** yes; browser tab, iOS home screen and all three web app
+  icons
 
 ## Page composition
 - **Dashboard home:** the GoalRoller tool is the focal point; quote and

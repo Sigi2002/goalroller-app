@@ -64,11 +64,15 @@ export function playwrightBrowsersDir({
 } = {}) {
   const override = env.PLAYWRIGHT_BROWSERS_PATH;
   if (override && override !== "0") return override;
+  const platformPath = platform === "win32" ? path.win32 : path.posix;
   if (platform === "win32") {
-    return path.join(env.LOCALAPPDATA ?? path.join(home, "AppData", "Local"), "ms-playwright");
+    return platformPath.join(
+      env.LOCALAPPDATA ?? platformPath.join(home, "AppData", "Local"),
+      "ms-playwright",
+    );
   }
-  if (platform === "darwin") return path.join(home, "Library", "Caches", "ms-playwright");
-  return path.join(env.XDG_CACHE_HOME ?? path.join(home, ".cache"), "ms-playwright");
+  if (platform === "darwin") return platformPath.join(home, "Library", "Caches", "ms-playwright");
+  return platformPath.join(env.XDG_CACHE_HOME ?? platformPath.join(home, ".cache"), "ms-playwright");
 }
 
 /**

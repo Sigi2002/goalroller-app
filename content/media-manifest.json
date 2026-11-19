@@ -1,0 +1,94 @@
+{
+  "entries": [
+    {
+      "path": "goalroller/goalroller-gelb-1.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Gelber GoalRoller mit dem Ergebnis 1"
+    },
+    {
+      "path": "goalroller/goalroller-gelb-x.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Gelber GoalRoller mit dem Ergebnis X"
+    },
+    {
+      "path": "goalroller/goalroller-gelb-2.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Gelber GoalRoller mit dem Ergebnis 2"
+    },
+    {
+      "path": "goalroller/goalroller-gruen-1.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Grüner GoalRoller mit dem Ergebnis 1"
+    },
+    {
+      "path": "goalroller/goalroller-gruen-x.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Grüner GoalRoller mit dem Ergebnis X"
+    },
+    {
+      "path": "goalroller/goalroller-gruen-2.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Grüner GoalRoller mit dem Ergebnis 2"
+    },
+    {
+      "path": "goalroller/goalroller-rot-1.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Roter GoalRoller mit dem Ergebnis 1"
+    },
+    {
+      "path": "goalroller/goalroller-rot-x.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Roter GoalRoller mit dem Ergebnis X"
+    },
+    {
+      "path": "goalroller/goalroller-rot-2.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Roter GoalRoller mit dem Ergebnis 2"
+    },
+    {
+      "path": "goalroller/goalroller-blau-1.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Blauer GoalRoller mit dem Ergebnis 1"
+    },
+    {
+      "path": "goalroller/goalroller-blau-x.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Blauer GoalRoller mit dem Ergebnis X"
+    },
+    {
+      "path": "goalroller/goalroller-blau-2.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Blauer GoalRoller mit dem Ergebnis 2"
+    },
+    {
+      "path": "goalroller/goalroller-schwarz-1.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Schwarzer GoalRoller mit dem Ergebnis 1"
+    },
+    {
+      "path": "goalroller/goalroller-schwarz-x.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Schwarzer GoalRoller mit dem Ergebnis X"
+    },
+    {
+      "path": "goalroller/goalroller-schwarz-2.png",
+      "visibility": "entitled",
+      "planKeys": ["goalroller"],
+      "alt": "Schwarzer GoalRoller mit dem Ergebnis 2"
+    }
+  ]
+}
