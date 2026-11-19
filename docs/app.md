@@ -37,8 +37,8 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
   Tipp sehen und teilen.
 - **Access:** `hasPlan(memberId, "goalroller")`
 - **Data:** `goalroller_activations` (`db/schema-goalroller.ts`,
-  `drizzle/0011_open_junta.sql`); Quote, Favoritenposition, Ergebnis und Tipp
-  werden nicht gespeichert.
+  `drizzle/0011_open_junta.sql`); Mannschaftsnamen, Quote,
+  Favoritenposition, Ergebnis und Tipp werden nicht gespeichert.
 - **Costs tokens:** keine.
 - **Tests:** `lib/goalroller/dice.test.ts`, `lib/goalroller/config.test.ts`,
   `lib/entitlements/preview.test.ts`, `lib/privacy/export-shape.test.ts`,

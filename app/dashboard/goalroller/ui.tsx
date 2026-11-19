@@ -29,6 +29,7 @@ import {
   type Outcome,
 } from "@/lib/goalroller/dice";
 import { recordFirstSuccessfulRoll } from "./actions";
+import { withMatchLine } from "./share-text";
 
 type RollResult = {
   mode: GameMode;
@@ -47,6 +48,8 @@ export function GoalrollerTool() {
   const locale = useLocale();
   const [mode, setMode] = useState<GameMode>("football");
   const [odds, setOdds] = useState("");
+  const [homeTeam, setHomeTeam] = useState("");
+  const [awayTeam, setAwayTeam] = useState("");
   const [favorite, setFavorite] = useState<Favorite>("home");
   const [duelFavoritePosition, setDuelFavoritePosition] =
     useState<DuelFavoritePosition>("A");
@@ -209,9 +212,11 @@ export function GoalrollerTool() {
       tip: tipLabel,
     };
 
-    return value.mode === "duels"
+    const message = value.mode === "duels"
       ? t("duelShareText", shareValues)
       : t("shareText", shareValues);
+
+    return withMatchLine(message, homeTeam, awayTeam);
   }
 
   async function copyResult() {
@@ -312,6 +317,31 @@ export function GoalrollerTool() {
         </CardHeader>
         <CardContent className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.8fr)]">
           <div className="space-y-5">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="home-team">{t("homeTeamLabel")}</Label>
+                <Input
+                  id="home-team"
+                  type="text"
+                  placeholder={t("homeTeamPlaceholder")}
+                  value={homeTeam}
+                  disabled={busy}
+                  onChange={(event) => setHomeTeam(event.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="away-team">{t("awayTeamLabel")}</Label>
+                <Input
+                  id="away-team"
+                  type="text"
+                  placeholder={t("awayTeamPlaceholder")}
+                  value={awayTeam}
+                  disabled={busy}
+                  onChange={(event) => setAwayTeam(event.target.value)}
+                />
+              </div>
+            </div>
+
             {mode === "football" ? (
               <fieldset className="space-y-2">
                 <legend className="text-sm font-medium">
