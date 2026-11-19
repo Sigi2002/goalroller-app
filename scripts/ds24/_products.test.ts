@@ -537,13 +537,13 @@ describe("productTargets over the shipped registry", () => {
   const shipped = readProducts();
   const rows = productTargets(shipped.products, "dev");
 
-  it("carries the ways to pay and the recorded plans on every row", () => {
-    expect(rows.length).toBeGreaterThan(0);
-    for (const row of rows) {
-      expect(Array.isArray(row.options)).toBe(true);
-      expect(row.options.length).toBeGreaterThan(0);
-      expect(typeof row.payplans).toBe("object");
-    }
+  it("keeps example offers out of the sync targets until the product is approved", () => {
+    expect(rows).toEqual([]);
+    expect(shipped.products.basic.sell).toBe(false);
+    expect(shipped.products.goalroller).toMatchObject({
+      kind: "one_time",
+      sell: false,
+    });
   });
 
   it("gives a subscription with several options one ROW per language, not per price", () => {

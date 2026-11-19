@@ -201,6 +201,13 @@ try {
         where subject_member_id = ${memberId} order by created_at`
     : [];
 
+  const goalroller = memberId
+    ? await sql`
+        select first_rolled_at
+        from goalroller_activations
+        where member_id = ${memberId}`
+    : [];
+
   // --- The setup keys they MINTED ----------------------------------------------
   // 🚨 `docs/data-protection.md` classes this table as personal data in so many
   // words — "the name is theirs and the row names its owner" — and it was in
@@ -282,7 +289,7 @@ try {
         "`impersonations[]` is every time an operator signed in as this person to look at their account — who, when, and for how long. It records ACCESS, not activity: what was done while inside is not captured anywhere, deliberately. A row with `ended_by: \"abandoned\"` was closed automatically when its 30 minutes ran out, which says when the session was due to end, not that the operator was present until then.",
       ],
       notHeldAtAll: [
-        "No tracking, profiling or advertising data — this application collects none.",
+        "No advertising profiling or cross-site tracking. GoalRoller records only the timestamp of the first successful roll; see the goalroller section.",
         "IP addresses are counted in memory for fifteen minutes to limit failed sign-ins and are never written to the database, so there is nothing here to export.",
       ],
       retentionNote:
@@ -304,6 +311,7 @@ try {
     impersonations,
     setupActs,
     setupKeys,
+    goalroller,
     media: mediaRows,
     webhookEvents,
     // 🚨 And whatever the installed modules hold about this person — the same

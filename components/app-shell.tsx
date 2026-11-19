@@ -54,7 +54,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { LayoutDashboard, CircleUser, CreditCard, FileText, MessageCircle, ShieldCheck, Users, Receipt, Coins, LogIn, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, CircleUser, CreditCard, FileText, MessageCircle, ShieldCheck, Users, Receipt, Coins, LogIn, LogOut, Menu, Dices } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { initialsFrom } from "@/lib/initials";
@@ -119,6 +119,7 @@ export const NAVIGATION: NavItem[] = [
   // (story 3.5). Under /dashboard, so `proxy.ts` already guards it — a
   // route OUTSIDE that prefix would be public until the matcher named it.
   { href: "/dashboard/account", labelKey: "account", icon: CircleUser },
+  { href: "/dashboard/goalroller", labelKey: "goalroller", icon: Dices },
   // The Member's purchases, invoices and subscription self-service — visible to
   // every signed-in member (NOT ownerOnly). Scoped to them by the page itself.
   { href: "/dashboard/billing", labelKey: "billing", icon: FileText },

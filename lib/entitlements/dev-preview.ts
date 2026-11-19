@@ -17,14 +17,15 @@
 // 🚨 Why the keys are handed IN rather than read inside `preview.mjs`: a
 // bundled module cannot resolve a path relative to its own source file, so the
 // registry read that works for the setup scripts would be looking inside
-// `.next/` here. `sellableProducts()` is the app's own reader and applies the
-// same `sell !== false` rule.
+// `.next/` here. `sellableProducts()` applies the `sell !== false` rule; this
+// app adds its parked GoalRoller product for the DEV owner preview only.
 import { db } from "@/db";
 import { appEnv } from "@/lib/env-guard";
+import { previewProductKeysFor } from "@/lib/goalroller/config";
 
 /**
- * Give the owner a manual grant for everything this app sells — DEV only, and
- * never at the cost of a sign-in.
+ * Give the owner manual preview grants — DEV only, and never at the cost of a
+ * sign-in.
  *
  * ⚠️ AWAITED by its callers, deliberately: fire-and-forget would let the first
  * page render before the grants exist, and the first page an owner opens after
@@ -48,11 +49,15 @@ export async function grantDevPreviewGrants(memberId: string): Promise<void> {
 
     // The app classifies its own APP_ENV with the one reader it has; the
     // decision is not repeated inside preview.mjs (its header says why).
+    const dev = appEnv(process.env.APP_ENV) === "development";
     const result = await ensureOperatorPreviewGrants({
       memberId,
-      dev: appEnv(process.env.APP_ENV) === "development",
+      dev,
       db,
-      productKeys: sellableProducts().map((p) => p.key),
+      productKeys: previewProductKeysFor(
+        dev,
+        sellableProducts().map((p) => p.key),
+      ),
     });
 
     // Only when something was actually written. A line on every sign-in would
@@ -61,7 +66,7 @@ export async function grantDevPreviewGrants(memberId: string): Promise<void> {
     // answers `{ skipped: "not-dev" }` and nothing is said at all.
     if ("granted" in result && result.granted.length > 0) {
       console.info(
-        `[dev-preview] member=${memberId} granted=${result.granted.join(",")} — the owner can use what she sells; revoke under Users → that account`,
+        `[dev-preview] member=${memberId} granted=${result.granted.join(",")} — revoke under Users → that account`,
       );
     }
   } catch (error) {

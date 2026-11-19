@@ -112,6 +112,11 @@ export * from "./schema-tokens";
 // an access question touches. See schema-entitlements.ts.
 export * from "./schema-entitlements";
 
+// --- GoalRoller --------------------------------------------------------------
+// The first successful roll only; quote and outcome history is deliberately
+// not stored. See schema-goalroller.ts.
+export * from "./schema-goalroller";
+
 // --- Self-service account management -----------------------------------------
 // `email_changes` — a Member's requested address change, until it is confirmed.
 // See schema-email-changes.ts.

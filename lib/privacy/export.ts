@@ -48,6 +48,7 @@ import {
   consentRecords,
   emailChanges,
   grants,
+  goalrollerActivations,
   impersonations,
   setupAudit,
   setupKeys,
@@ -79,6 +80,7 @@ export const MEMBER_EXPORT_SECTIONS = [
   "grants",
   "chatMessages",
   "aiUsage",
+  "goalroller",
   "impersonations",
   "media",
   "setupActs",
@@ -271,6 +273,7 @@ export async function buildMemberExport(
     // function. `lib/privacy/export-shape.test.ts` now does.
     setupActRows,
     setupKeyRows,
+    goalrollerRows,
     mediaRows,
   ] = await Promise.all([
     orderIds.length
@@ -412,6 +415,11 @@ export async function buildMemberExport(
       .where(eq(setupKeys.ownerId, memberId))
       .orderBy(asc(setupKeys.createdAt)),
 
+    db
+      .select({ firstRolledAt: goalrollerActivations.firstRolledAt })
+      .from(goalrollerActivations)
+      .where(eq(goalrollerActivations.memberId, memberId)),
+
     // What this person uploaded. `owner`-visible rows only: those are theirs.
     // Product imagery an operator uploaded carries their id too, and it belongs
     // to the app rather than to them — which is why the foreign key is
@@ -470,7 +478,7 @@ export async function buildMemberExport(
       aboutRetention:
         "Orders and invoices stay even if you delete your account. They are accounting records that German law requires us to keep (§ 147 AO, § 257 HGB), and the GDPR exempts exactly those from erasure while that obligation runs (Art. 17(3)(b)). Your member link is removed from them.",
       notHeldAtAll: [
-        "No tracking, profiling, advertising or automated decision-making — this application does none.",
+        "No advertising profiling or cross-site tracking. GoalRoller records only the timestamp of your first successful roll; see the goalroller section.",
         "IP addresses are counted in memory for fifteen minutes to limit failed sign-in attempts and are never written to the database, so there is nothing here to export.",
       ],
     },
@@ -491,6 +499,7 @@ export async function buildMemberExport(
     media: mediaRows,
     setupActs: setupActRows,
     setupKeys: setupKeyRows,
+    goalroller: goalrollerRows,
 
     // 🚨 And whatever the installed modules hold about this person — the
     // community's thirteen sections among them, since Epic 24 moved them into

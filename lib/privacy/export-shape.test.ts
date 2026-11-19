@@ -44,6 +44,7 @@ import {
   consentRecords,
   emailChanges,
   grants,
+  goalrollerActivations,
   impersonations,
   invoices,
   media,
@@ -77,6 +78,7 @@ const SECTION_TABLE: Record<string, string> = {
   grants: getTableName(grants),
   chatMessages: getTableName(chatMessages),
   aiUsage: getTableName(aiUsage),
+  goalroller: getTableName(goalrollerActivations),
   impersonations: getTableName(impersonations),
   media: getTableName(media),
   setupActs: getTableName(setupAudit),
@@ -108,6 +110,13 @@ describe("🚨 the member export as it is really handed over", () => {
     >;
 
     for (const [section, table] of Object.entries(SECTION_TABLE)) {
+      if (section === "goalroller") {
+        expect(result[section]).toEqual([
+          expect.objectContaining({ firstRolledAt: expect.any(Date) }),
+        ]);
+        continue;
+      }
+
       // At least one text column survives the column mappers, so the marker is
       // findable; a section carrying another query's rows carries that query's
       // table name instead and fails here with both names on screen.

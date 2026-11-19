@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
-import { CalendarClock, CreditCard } from "lucide-react";
+import { CalendarClock, CreditCard, Dices } from "lucide-react";
 
 import { auth } from "@/auth";
 import { hasDigistoreApiKey } from "@/lib/digistore/settings";
@@ -264,6 +264,21 @@ export default async function DashboardPage({
       <OnboardingChecklist steps={onboardingSteps} className="mb-6" />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Card className="sm:col-span-2 lg:col-span-3">
+          <CardHeader>
+            <CardTitle level="h2">{t("goalrollerTitle")}</CardTitle>
+            <CardDescription>{t("goalrollerBody")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button asChild>
+              <Link href="/dashboard/goalroller">
+                <Dices aria-hidden />
+                {t("goalrollerCta")}
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+
         {/*
           THE LEADING CARD. Four cards of one size used to stand here and none
           of them was what the member came for; the page was a row of equally

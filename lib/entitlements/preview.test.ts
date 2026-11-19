@@ -66,8 +66,8 @@ describe("sellableKeysFrom", () => {
     expect(sellableKeysFrom(REGISTRY)).toEqual(["basic", "starter"]);
   });
 
-  it("reads the shipped registry without being handed one", () => {
-    expect(sellableKeysFrom(readRegistry()).length).toBeGreaterThan(0);
+  it("keeps the unfinished GoalRoller and Basic examples off the offer list", () => {
+    expect(sellableKeysFrom(readRegistry())).toEqual([]);
   });
 });
 

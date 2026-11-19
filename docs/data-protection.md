@@ -174,7 +174,9 @@ disclosure to them is a disclosure, not a processing arrangement.
 | **An AI company** — only with a **companion** switched on | What the customer wrote, plus the named facts that companion's entry passes it. This is content they PRODUCED, not only a question they asked, and it is the difference from the row above rather than a variation on it. It may be a **different company** from the assistant's — the binding is the `companion` task in `config/ai-models.json`, so an app can have two AI recipients. `node run.mjs ai-check` names both. See §8a. |
 | **Your other customers** — only with the **community** switched on | A member's chosen name, their about text and their picture, plus their role badge — and, for a member who has set no profile, the name on their account as a fallback. **This is the only row here that is not a processor**, and it is the reason it must not be left out: everything above is somebody working on the operator's behalf under a contract, while this is a disclosure to other data subjects with no agreement behind it and no way to recall it. Never the email address, never purchases. Absent entirely while the module is off. See §14a. |
 
-No analytics, no tracking pixels, no advertising SDKs ship with this template.
+No third-party analytics, tracking pixels or advertising SDKs ship with this
+template. GoalRoller keeps one first-use timestamp per member; it does not
+record the quote or result (§16).
 **If you add none, you need no cookie banner** — the only cookies set are the
 session, the language choice and the theme, all strictly necessary or set by
 your own action.
@@ -206,7 +208,8 @@ What genuinely remains open, and what an operator should decide with advice:
    deletes their own from `/dashboard/account` (Art. 17, no support ticket
    needed), and an Operator can delete one from the user list. Both cascade to
    sessions, chat transcripts, API keys, grants, pending address changes,
-   consent records and impersonation rows — and both deliberately leave
+   consent records, GoalRoller activation and impersonation rows — and both
+   deliberately leave
    `orders`, `subscriptions`, `token_ledger` and `ai_usage` standing with the
    member link set to `null`, for the reason above. The dialog names both halves
    before the button, because "delete my account" reads as "delete everything"
@@ -1328,8 +1331,9 @@ off, and so does the export (§14a).
 
 Worth stating, because a privacy policy that claims less is easier to keep true:
 
-- No tracking, no advertising profiling, no cross-site measurement, and nothing
-  sold or passed on for it.
+- No advertising profiling, cross-site measurement, or tracking pixels, and
+  nothing sold or passed on for it. GoalRoller stores only the first-use
+  timestamp described in §16.
 - 🚨 **One qualification, and it is written here rather than left for somebody
   to discover: with the `community` module installed, this app DOES take an
   automated measure and DOES compute a score about a person.** Enough distinct
@@ -1438,3 +1442,16 @@ disables the job; the floor is one month.
 
 Spent and expired confirmations go with every run and unconditionally: a
 consumed nonce is arithmetic, not a record.
+
+## 16. GoalRoller first-use marker
+
+`goalroller_activations` holds one row per member, created after the server
+confirms an entitled member's first successful roll. Its only value beyond the
+member link is `first_rolled_at`, the timestamp used to measure initial use of
+the one-time web access.
+
+The quote, selected favourite, random outcome, derived tip and share or copy
+actions are not sent to the server and are not stored. There is no row until a
+first successful roll. Both subject-access exports include the timestamp under
+`goalroller`; account deletion removes the row through its cascading member
+foreign key.
