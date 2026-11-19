@@ -25,8 +25,9 @@ Versprechen, das du selbst abgegeben hast._
 
 - [x] dich anmelden und dein eigenes Dashboard finden (AppKit-Grundfunktion,
   vorhanden seit 2026-11-19)
-- [x] die Favoritenquote eingeben, den Heim- oder Auswärtsfavoriten wählen und
-  mit dem passenden W12 einen Tipp würfeln, sehen und teilen
+- [x] zwischen 1-X-2-Fußballtipps und Duellen wählen, die Quote und
+  Favoritenposition eingeben und den Tipp mit dem passenden W12 würfeln, sehen
+  und teilen
 - [ ] einmalig für den Webzugang bezahlen und dadurch GoalRoller freischalten
 - [ ] auf einer deutschen Produktseite GoalRoller kennenlernen und den
   Webzugang kaufen

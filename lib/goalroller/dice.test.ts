@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import {
   DICE,
+  diceForMode,
+  duelTipForOutcome,
   faceCounts,
   parseFavoriteOdds,
   tipForOutcome,
@@ -58,8 +60,18 @@ describe("GoalRoller W12", () => {
       });
     }
 
-    expect(parseFavoriteOdds("1.24")).toEqual({ ok: false, reason: "range" });
-    expect(parseFavoriteOdds("2,91")).toEqual({ ok: false, reason: "range" });
+    expect(parseFavoriteOdds("1.24")).toMatchObject({
+      ok: false,
+      reason: "range",
+      minCents: 125,
+      maxCents: 290,
+    });
+    expect(parseFavoriteOdds("2,91")).toMatchObject({
+      ok: false,
+      reason: "range",
+      minCents: 125,
+      maxCents: 290,
+    });
   });
 
   it("accepts comma and point decimals without rounding ambiguous odds", () => {
@@ -79,6 +91,58 @@ describe("GoalRoller W12", () => {
     });
   });
 
+  it("uses only the four duel dice with the specified quote boundaries", () => {
+    expect(diceForMode("football").map((die) => die.id)).toEqual([
+      "yellow",
+      "green",
+      "red",
+      "blue",
+      "black",
+    ]);
+    expect(diceForMode("duels").map((die) => die.id)).toEqual([
+      "yellow",
+      "green",
+      "red",
+      "blue",
+    ]);
+
+    const boundaries = [
+      ["1.19", "yellow"],
+      ["1.31", "yellow"],
+      ["1.32", "green"],
+      ["1.49", "green"],
+      ["1.50", "red"],
+      ["1.72", "red"],
+      ["1.73", "blue"],
+      ["1.99", "blue"],
+    ] as const;
+
+    for (const [odds, dieId] of boundaries) {
+      expect(parseFavoriteOdds(odds, "duels")).toMatchObject({
+        ok: true,
+        die: { id: dieId },
+      });
+    }
+
+    expect(parseFavoriteOdds("1,50", "duels")).toMatchObject({
+      ok: true,
+      die: { id: "red" },
+      range: { minCents: 150, maxCents: 172 },
+    });
+    expect(parseFavoriteOdds("1.18", "duels")).toMatchObject({
+      ok: false,
+      reason: "range",
+      minCents: 119,
+      maxCents: 199,
+    });
+    expect(parseFavoriteOdds("2.00", "duels")).toMatchObject({
+      ok: false,
+      reason: "range",
+      minCents: 119,
+      maxCents: 199,
+    });
+  });
+
   it("maps away-favourite outcomes to the correct match tip", () => {
     expect(tipForOutcome("1", "away")).toEqual({
       tip: "2",
@@ -95,6 +159,33 @@ describe("GoalRoller W12", () => {
     expect(tipForOutcome("2", "home")).toEqual({
       tip: "2",
       awayNotice: null,
+    });
+  });
+
+  it("maps both duel positions to favourite and underdog tips", () => {
+    expect(duelTipForOutcome("1", "A")).toEqual({
+      tip: "1",
+      verdict: "favoriteWin",
+    });
+    expect(duelTipForOutcome("X", "A")).toEqual({
+      tip: "1",
+      verdict: "favoriteWin",
+    });
+    expect(duelTipForOutcome("2", "A")).toEqual({
+      tip: "2",
+      verdict: "underdogWin",
+    });
+    expect(duelTipForOutcome("1", "B")).toEqual({
+      tip: "2",
+      verdict: "favoriteWin",
+    });
+    expect(duelTipForOutcome("X", "B")).toEqual({
+      tip: "2",
+      verdict: "favoriteWin",
+    });
+    expect(duelTipForOutcome("2", "B")).toEqual({
+      tip: "1",
+      verdict: "underdogWin",
     });
   });
 

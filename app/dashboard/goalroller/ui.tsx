@@ -17,29 +17,39 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  duelTipForOutcome,
   faceCounts,
   parseFavoriteOdds,
   tipForOutcome,
+  type DuelFavoritePosition,
   type Favorite,
+  type GameMode,
   type DieId,
+  type OddsRange,
   type Outcome,
 } from "@/lib/goalroller/dice";
 import { recordFirstSuccessfulRoll } from "./actions";
 
 type RollResult = {
+  mode: GameMode;
   oddsCents: number;
   dieId: DieId;
+  range: OddsRange;
   counts: Record<Outcome, number>;
   outcome: Outcome;
   tip: Outcome;
   awayNotice: "favoriteWins" | "favoriteLoses" | null;
+  duelVerdict: "favoriteWin" | "underdogWin" | null;
 };
 
 export function GoalrollerTool() {
   const t = useTranslations("goalroller");
   const locale = useLocale();
+  const [mode, setMode] = useState<GameMode>("football");
   const [odds, setOdds] = useState("");
   const [favorite, setFavorite] = useState<Favorite>("home");
+  const [duelFavoritePosition, setDuelFavoritePosition] =
+    useState<DuelFavoritePosition>("A");
   const [rolling, setRolling] = useState(false);
   const [saving, setSaving] = useState(false);
   const [shownOutcome, setShownOutcome] = useState<Outcome | null>(null);
@@ -51,7 +61,7 @@ export function GoalrollerTool() {
   const intervalRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
 
-  const parsed = useMemo(() => parseFavoriteOdds(odds), [odds]);
+  const parsed = useMemo(() => parseFavoriteOdds(odds, mode), [odds, mode]);
   const die = parsed.ok ? parsed.die : null;
   const busy = rolling || saving;
   const numberFormat = useMemo(
@@ -91,7 +101,10 @@ export function GoalrollerTool() {
     if (!parsed.ok || busy) return;
 
     const selectedDie = parsed.die;
+    const selectedRange = parsed.range;
+    const selectedMode = mode;
     const selectedFavorite = favorite;
+    const selectedDuelFavoritePosition = duelFavoritePosition;
     const selectedOdds = parsed.oddsCents;
     setResult(null);
     setFeedback(null);
@@ -119,7 +132,22 @@ export function GoalrollerTool() {
         selectedDie.faces[
           Math.floor(Math.random() * selectedDie.faces.length)
         ];
-      const mapped = tipForOutcome(outcome, selectedFavorite);
+      let tip: Outcome;
+      let awayNotice: RollResult["awayNotice"] = null;
+      let duelVerdict: RollResult["duelVerdict"] = null;
+
+      if (selectedMode === "duels") {
+        const mapped = duelTipForOutcome(
+          outcome,
+          selectedDuelFavoritePosition,
+        );
+        tip = mapped.tip;
+        duelVerdict = mapped.verdict;
+      } else {
+        const mapped = tipForOutcome(outcome, selectedFavorite);
+        tip = mapped.tip;
+        awayNotice = mapped.awayNotice;
+      }
 
       void recordFirstSuccessfulRoll()
         .then((response) => {
@@ -133,12 +161,15 @@ export function GoalrollerTool() {
 
           setShownOutcome(outcome);
           setResult({
+            mode: selectedMode,
             oddsCents: selectedOdds,
             dieId: selectedDie.id,
+            range: selectedRange,
             counts: faceCounts(selectedDie),
             outcome,
-            tip: mapped.tip,
-            awayNotice: mapped.awayNotice,
+            tip,
+            awayNotice,
+            duelVerdict,
           });
         })
         .catch((error: unknown) => {
@@ -155,13 +186,20 @@ export function GoalrollerTool() {
   function resultText(value: RollResult): string {
     const dieName = dieLabel(value.dieId);
     const tipLabel =
-      value.tip === "1"
-        ? t("homeWin")
-        : value.tip === "2"
-          ? t("awayWin")
-          : t("draw");
+      value.mode === "duels" && value.duelVerdict
+        ? t(
+            value.duelVerdict === "favoriteWin"
+              ? "duelFavoriteWin"
+              : "duelUnderdogWin",
+            { tip: value.tip === "1" ? "1 (A)" : "2 (B)" },
+          )
+        : value.tip === "1"
+          ? t("homeWin")
+          : value.tip === "2"
+            ? t("awayWin")
+            : t("draw");
 
-    return t("shareText", {
+    const shareValues = {
       odds: formatOdds(value.oddsCents),
       die: dieName,
       one: value.counts["1"],
@@ -169,7 +207,11 @@ export function GoalrollerTool() {
       two: value.counts["2"],
       result: value.outcome,
       tip: tipLabel,
-    });
+    };
+
+    return value.mode === "duels"
+      ? t("duelShareText", shareValues)
+      : t("shareText", shareValues);
   }
 
   async function copyResult() {
@@ -204,23 +246,65 @@ export function GoalrollerTool() {
   const oddsError =
     odds.trim() && !parsed.ok
       ? parsed.reason === "range"
-        ? t("rangeError")
+        ? t("rangeError", {
+            min: formatOdds(parsed.minCents),
+            max: formatOdds(parsed.maxCents),
+          })
         : t("formatError")
       : null;
 
   const dieName = die ? dieLabel(die.id) : null;
   const counts = die ? faceCounts(die) : null;
-  const outcomeLabel =
-    result?.tip === "1"
-      ? t("homeWin")
-      : result?.tip === "2"
-        ? t("awayWin")
-        : result
-          ? t("draw")
-          : null;
+  const tipLabel = result
+    ? result.mode === "duels" && result.duelVerdict
+      ? t(
+          result.duelVerdict === "favoriteWin"
+            ? "duelFavoriteWin"
+            : "duelUnderdogWin",
+          { tip: result.tip === "1" ? "1 (A)" : "2 (B)" },
+        )
+      : result.tip === "1"
+        ? t("homeWin")
+        : result.tip === "2"
+          ? t("awayWin")
+          : t("draw")
+    : null;
+
+  function selectMode(nextMode: GameMode) {
+    setMode(nextMode);
+    setResult(null);
+    setShownOutcome(null);
+    setFeedback(null);
+  }
 
   return (
     <div className="space-y-6">
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium">{t("modeLabel")}</legend>
+        <div className="grid gap-2 sm:grid-cols-2" role="group">
+          <Button
+            type="button"
+            variant={mode === "football" ? "default" : "outline"}
+            aria-pressed={mode === "football"}
+            className="h-auto min-h-10 whitespace-normal py-2"
+            disabled={busy}
+            onClick={() => selectMode("football")}
+          >
+            {t("footballMode")}
+          </Button>
+          <Button
+            type="button"
+            variant={mode === "duels" ? "default" : "outline"}
+            aria-pressed={mode === "duels"}
+            className="h-auto min-h-10 whitespace-normal py-2"
+            disabled={busy}
+            onClick={() => selectMode("duels")}
+          >
+            {t("duelMode")}
+          </Button>
+        </div>
+      </fieldset>
+
       <Card>
         <CardHeader>
           <CardTitle level="h2">{t("setupTitle")}</CardTitle>
@@ -228,39 +312,83 @@ export function GoalrollerTool() {
         </CardHeader>
         <CardContent className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.8fr)]">
           <div className="space-y-5">
-            <fieldset className="space-y-2">
-              <legend className="text-sm font-medium">{t("favoriteLabel")}</legend>
-              <div className="grid gap-2 sm:grid-cols-2" role="group">
-                <Button
-                  type="button"
-                  variant={favorite === "home" ? "default" : "outline"}
-                  aria-pressed={favorite === "home"}
-                  disabled={busy}
-                  onClick={() => {
-                    setFavorite("home");
-                    setResult(null);
-                    setShownOutcome(null);
-                    setFeedback(null);
-                  }}
-                >
-                  {t("homeFavorite")}
-                </Button>
-                <Button
-                  type="button"
-                  variant={favorite === "away" ? "default" : "outline"}
-                  aria-pressed={favorite === "away"}
-                  disabled={busy}
-                  onClick={() => {
-                    setFavorite("away");
-                    setResult(null);
-                    setShownOutcome(null);
-                    setFeedback(null);
-                  }}
-                >
-                  {t("awayFavorite")}
-                </Button>
-              </div>
-            </fieldset>
+            {mode === "football" ? (
+              <fieldset className="space-y-2">
+                <legend className="text-sm font-medium">
+                  {t("favoriteLabel")}
+                </legend>
+                <div className="grid gap-2 sm:grid-cols-2" role="group">
+                  <Button
+                    type="button"
+                    variant={favorite === "home" ? "default" : "outline"}
+                    aria-pressed={favorite === "home"}
+                    disabled={busy}
+                    onClick={() => {
+                      setFavorite("home");
+                      setResult(null);
+                      setShownOutcome(null);
+                      setFeedback(null);
+                    }}
+                  >
+                    {t("homeFavorite")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={favorite === "away" ? "default" : "outline"}
+                    aria-pressed={favorite === "away"}
+                    disabled={busy}
+                    onClick={() => {
+                      setFavorite("away");
+                      setResult(null);
+                      setShownOutcome(null);
+                      setFeedback(null);
+                    }}
+                  >
+                    {t("awayFavorite")}
+                  </Button>
+                </div>
+              </fieldset>
+            ) : (
+              <fieldset className="space-y-2">
+                <legend className="text-sm font-medium">
+                  {t("duelFavoritePosition")}
+                </legend>
+                <div className="grid gap-2 sm:grid-cols-2" role="group">
+                  <Button
+                    type="button"
+                    variant={
+                      duelFavoritePosition === "A" ? "default" : "outline"
+                    }
+                    aria-pressed={duelFavoritePosition === "A"}
+                    disabled={busy}
+                    onClick={() => {
+                      setDuelFavoritePosition("A");
+                      setResult(null);
+                      setShownOutcome(null);
+                      setFeedback(null);
+                    }}
+                  >
+                    {t("duelFavoriteA")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={
+                      duelFavoritePosition === "B" ? "default" : "outline"
+                    }
+                    aria-pressed={duelFavoritePosition === "B"}
+                    disabled={busy}
+                    onClick={() => {
+                      setDuelFavoritePosition("B");
+                      setResult(null);
+                      setShownOutcome(null);
+                      setFeedback(null);
+                    }}
+                  >
+                    {t("duelFavoriteB")}
+                  </Button>
+                </div>
+              </fieldset>
+            )}
 
             <div className="space-y-2">
               <Label htmlFor="favorite-odds">{t("oddsLabel")}</Label>
@@ -313,8 +441,12 @@ export function GoalrollerTool() {
               <svg
                 aria-label={t("dieAria", {
                   die: dieName,
-                  min: formatOdds(die.minCents),
-                  max: formatOdds(die.maxCents),
+                  min: formatOdds(
+                    parsed.ok ? parsed.range.minCents : die.minCents,
+                  ),
+                  max: formatOdds(
+                    parsed.ok ? parsed.range.maxCents : die.maxCents,
+                  ),
                 })}
                 className={`goalroller-die${rolling ? " goalroller-die--rolling" : ""}${result ? " goalroller-die--landed" : ""}`}
                 role="img"
@@ -349,8 +481,12 @@ export function GoalrollerTool() {
                 <p className="font-semibold">{dieName}</p>
                 <p className="text-muted-foreground text-sm">
                   {t("activeRange", {
-                    min: formatOdds(die.minCents),
-                    max: formatOdds(die.maxCents),
+                    min: formatOdds(
+                      parsed.ok ? parsed.range.minCents : die.minCents,
+                    ),
+                    max: formatOdds(
+                      parsed.ok ? parsed.range.maxCents : die.maxCents,
+                    ),
                   })}
                 </p>
                 <p className="text-sm font-medium">
@@ -376,7 +512,7 @@ export function GoalrollerTool() {
         <Callout variant={feedback.variant}>{feedback.message}</Callout>
       )}
 
-      {result && outcomeLabel && (
+      {result && tipLabel && (
         <Card aria-live="polite">
           <CardHeader>
             <CardTitle level="h2">{t("resultTitle")}</CardTitle>
@@ -398,7 +534,7 @@ export function GoalrollerTool() {
                 <p className="text-muted-foreground text-sm">
                   {t("tipLabel")}
                 </p>
-                <p className="text-3xl font-semibold">{outcomeLabel}</p>
+                <p className="text-xl font-semibold">{tipLabel}</p>
               </div>
             </div>
             {result.awayNotice && (
