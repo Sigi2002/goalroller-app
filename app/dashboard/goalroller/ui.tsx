@@ -665,49 +665,56 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
       )}
 
       {result && tipLabel && (
-        <Card aria-live="polite">
-          <CardHeader>
-            <CardTitle level="h2">{t("resultTitle")}</CardTitle>
-            <CardDescription>
-              {t("resultOdds", { odds: formatOdds(result.oddsCents) })}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <p className="text-muted-foreground text-sm">
-                  {t("outcomeLabel")}
-                </p>
-                <p className="text-3xl font-semibold tabular-nums">
-                  {displayedOutcomeText}
-                </p>
+        <div className="goalroller-result-frame rounded-2xl p-1">
+          <Card aria-live="polite">
+            <CardHeader>
+              <CardTitle
+                level="h2"
+                className="text-xl font-extrabold uppercase tracking-wide md:text-2xl"
+              >
+                {t("resultTitle")}
+              </CardTitle>
+              <CardDescription className="text-base font-medium">
+                {t("resultOdds", { odds: formatOdds(result.oddsCents) })}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 p-5 md:p-6">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <p className="text-muted-foreground text-base font-medium">
+                    {t("outcomeLabel")}
+                  </p>
+                  <p className="break-words text-lg leading-relaxed font-bold md:text-xl">
+                    {displayedOutcomeText}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-base font-medium">
+                    {t("tipLabel")}
+                  </p>
+                  <p className="text-lg font-bold md:text-xl">{tipLabel}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-muted-foreground text-sm">
-                  {t("tipLabel")}
-                </p>
-                <p className="text-xl font-semibold">{tipLabel}</p>
+              {result.awayNotice && (
+                <Callout variant="info">
+                  {result.awayNotice === "favoriteWins"
+                    ? t("awayFavoriteWins")
+                    : t("awayFavoriteLoses")}
+                </Callout>
+              )}
+              <div className="flex flex-wrap gap-2">
+                <Button type="button" variant="outline" onClick={copyResult}>
+                  <Copy aria-hidden />
+                  {t("copy")}
+                </Button>
+                <Button type="button" variant="outline" onClick={shareResult}>
+                  <Share2 aria-hidden />
+                  {t("share")}
+                </Button>
               </div>
-            </div>
-            {result.awayNotice && (
-              <Callout variant="info">
-                {result.awayNotice === "favoriteWins"
-                  ? t("awayFavoriteWins")
-                  : t("awayFavoriteLoses")}
-              </Callout>
-            )}
-            <div className="flex flex-wrap gap-2">
-              <Button type="button" variant="outline" onClick={copyResult}>
-                <Copy aria-hidden />
-                {t("copy")}
-              </Button>
-              <Button type="button" variant="outline" onClick={shareResult}>
-                <Share2 aria-hidden />
-                {t("share")}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );

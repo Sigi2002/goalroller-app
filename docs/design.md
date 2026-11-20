@@ -38,6 +38,11 @@ themes.
 | Roll button | Black with white semibold text | Anthracite on hover; pressed feedback; light border and elevation in dark mode |
 | Die panel | gray-700 | — |
 
+The result card keeps its theme-aware surface inside a 4px animated conic
+gradient using the five GoalRoller colours. It completes a rotation in five
+seconds; reduced-motion preferences leave the gradient static. Its title is
+uppercase and bold, with larger result and supporting text.
+
 ## The mark
 - **Logo:** `public/brand/logo.jpg` — the supplied GoalRoller mark, shown in
   the header and on the sign-in page

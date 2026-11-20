@@ -98,6 +98,11 @@
   --goalroller-roll-base: hsl(0 0% 0%);
   --goalroller-roll-hover: hsl(0 0% 12.16%);
   --goalroller-roll-dark-hover: hsl(0 0% 9.02%);
+  --goalroller-result-yellow: hsl(47.95 95.83% 53.14%);
+  --goalroller-result-green: hsl(142.09 70.59% 45.29%);
+  --goalroller-result-red: hsl(0 84.2% 60.2%);
+  --goalroller-result-blue: hsl(217.22 91.22% 59.8%);
+  --goalroller-result-midnight: hsl(220.91 39.3% 10.98%);
   --goalroller-ink: hsl(0 0% 0%);
   --goalroller-paper: hsl(0 0% 100%);
 
@@ -174,6 +179,11 @@
   --goalroller-roll-base: hsl(0 0% 0%);
   --goalroller-roll-hover: hsl(0 0% 12.16%);
   --goalroller-roll-dark-hover: hsl(0 0% 9.02%);
+  --goalroller-result-yellow: hsl(47.95 95.83% 53.14%);
+  --goalroller-result-green: hsl(142.09 70.59% 45.29%);
+  --goalroller-result-red: hsl(0 84.2% 60.2%);
+  --goalroller-result-blue: hsl(217.22 91.22% 59.8%);
+  --goalroller-result-midnight: hsl(220.91 39.3% 10.98%);
   --goalroller-ink: hsl(0 0% 0%);
   --goalroller-paper: hsl(0 0% 100%);
 
@@ -268,6 +278,11 @@
   --color-goalroller-roll-base: var(--goalroller-roll-base);
   --color-goalroller-roll-hover: var(--goalroller-roll-hover);
   --color-goalroller-roll-dark-hover: var(--goalroller-roll-dark-hover);
+  --color-goalroller-result-yellow: var(--goalroller-result-yellow);
+  --color-goalroller-result-green: var(--goalroller-result-green);
+  --color-goalroller-result-red: var(--goalroller-result-red);
+  --color-goalroller-result-blue: var(--goalroller-result-blue);
+  --color-goalroller-result-midnight: var(--goalroller-result-midnight);
   --color-goalroller-ink: var(--goalroller-ink);
   --color-goalroller-paper: var(--goalroller-paper);
 
@@ -414,6 +429,25 @@
   }
 }
 
+@property --goalroller-result-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.goalroller-result-frame {
+  background: conic-gradient(
+    from var(--goalroller-result-angle),
+    var(--goalroller-result-yellow),
+    var(--goalroller-result-green),
+    var(--goalroller-result-red),
+    var(--goalroller-result-blue),
+    var(--goalroller-result-midnight),
+    var(--goalroller-result-yellow)
+  );
+  animation: goalroller-result-border-spin 5s linear infinite;
+}
+
 .goalroller-die {
   width: min(100%, 14rem);
   overflow: visible;
@@ -471,9 +505,19 @@
   }
 }
 
+@keyframes goalroller-result-border-spin {
+  to {
+    --goalroller-result-angle: 360deg;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .goalroller-die--rolling,
   .goalroller-die--landed {
     animation-duration: 0.01ms;
+  }
+
+  .goalroller-result-frame {
+    animation: none;
   }
 }
