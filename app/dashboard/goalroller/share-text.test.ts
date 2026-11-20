@@ -25,10 +25,10 @@ describe("GoalRoller shared match line", () => {
 
 describe("GoalRoller displayed outcome text", () => {
   it("explains X only when the result is from duels", () => {
-    const duelDrawResult = "X = bei Duellen Sieg des Favoriten";
+    const duelDrawResult = "X oder 1 = beim Duell ein Sieg des Favoriten.";
 
     expect(displayOutcomeText("duels", "X", duelDrawResult)).toBe(
-      "X = bei Duellen Sieg des Favoriten",
+      "X oder 1 = beim Duell ein Sieg des Favoriten.",
     );
     expect(displayOutcomeText("duels", "1", duelDrawResult)).toBe("1");
     expect(displayOutcomeText("duels", "2", duelDrawResult)).toBe("2");

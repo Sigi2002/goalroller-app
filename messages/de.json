@@ -183,7 +183,7 @@
     "tipLabel": "Dein Tipp",
     "homeWin": "1 (Heimsieg)",
     "draw": "X (Unentschieden)",
-    "duelDrawResult": "X = bei Duellen Sieg des Favoriten",
+    "duelDrawResult": "X oder 1 = beim Duell ein Sieg des Favoriten.",
     "awayWin": "2 (Auswärtssieg)",
     "awayFavoriteWins": "Somit ist eine 2 (Auswärts-Sieg) zu tippen.",
     "awayFavoriteLoses": "Somit ist eine 1 (Heim-Sieg) zu tippen.",
