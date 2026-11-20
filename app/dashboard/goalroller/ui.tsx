@@ -36,6 +36,7 @@ import {
   goalrollerPreviewImageFor,
   type GoalrollerRollImageUrls,
 } from "./roll-images";
+import { playGoalrollerSound, stopGoalrollerSound } from "./roll-audio";
 
 type RollResult = {
   mode: GameMode;
@@ -71,6 +72,8 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
     variant: "success" | "danger";
     message: string;
   } | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const rollInProgressRef = useRef(false);
   const intervalRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
 
@@ -82,6 +85,17 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
     [locale],
   );
   const formatOdds = (cents: number) => numberFormat.format(cents / 100);
+
+  useEffect(() => {
+    const audio = new Audio("/sounds/wuerfel-rollen.wav");
+    audio.preload = "auto";
+    audioRef.current = audio;
+
+    return () => {
+      stopGoalrollerSound(audio);
+      audioRef.current = null;
+    };
+  }, []);
 
   function dieLabel(dieId: DieId): string {
     switch (dieId) {
@@ -111,8 +125,9 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
   );
 
   function roll() {
-    if (!parsed.ok || busy) return;
+    if (!parsed.ok || busy || rollInProgressRef.current) return;
 
+    rollInProgressRef.current = true;
     const selectedDie = parsed.die;
     const selectedRange = parsed.range;
     const selectedMode = mode;
@@ -123,6 +138,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
     setFeedback(null);
     setRolling(true);
     setShownOutcome(selectedDie.faces[0]);
+    playGoalrollerSound(audioRef.current);
 
     intervalRef.current = window.setInterval(() => {
       const face =
@@ -138,6 +154,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
         intervalRef.current = null;
       }
       timeoutRef.current = null;
+      stopGoalrollerSound(audioRef.current);
 
       const outcome =
         selectedDie.faces[
@@ -195,7 +212,10 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             message: t("activationFailed"),
           });
         })
-        .finally(() => setSaving(false));
+        .finally(() => {
+          setSaving(false);
+          rollInProgressRef.current = false;
+        });
     }, 3000);
   }
 
