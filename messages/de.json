@@ -161,7 +161,7 @@
     "rangeError": "Bitte eine Favoritenquote zwischen {min} und {max} eingeben.",
     "modeLabel": "Wähle deinen Spielmodus",
     "footballMode": "Fußball tippen (1 / X / 2)",
-    "duelMode": "Duelle (Tore über/unter, Tennis, Golf, Tipp mit 2 Möglichkeiten)",
+    "duelMode": "Duelle (Tore über/unter, Tennis, Tipp mit 2 Möglichkeiten)",
     "duelFavoritePosition": "Ist der Favorit auf 1 (A) oder 2 (B)?",
     "duelFavoriteA": "Favorit ist 1 (A)",
     "duelFavoriteB": "Favorit ist 2 (B)",

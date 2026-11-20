@@ -161,7 +161,7 @@
     "rangeError": "Enter favourite odds between {min} and {max}.",
     "modeLabel": "Choose your game mode",
     "footballMode": "Football tips (1 / X / 2)",
-    "duelMode": "Duels (over/under goals, tennis, golf, two-way picks)",
+    "duelMode": "Duels (over/under goals, tennis, two-way picks)",
     "duelFavoritePosition": "Is the favourite on 1 (A) or 2 (B)?",
     "duelFavoriteA": "Favourite is 1 (A)",
     "duelFavoriteB": "Favourite is 2 (B)",

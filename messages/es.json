@@ -161,7 +161,7 @@
     "rangeError": "Introduce una cuota del favorito entre {min} y {max}.",
     "modeLabel": "Elige el modo de juego",
     "footballMode": "Pronósticos de fútbol (1 / X / 2)",
-    "duelMode": "Duelos (más/menos goles, tenis, golf, pronósticos de dos opciones)",
+    "duelMode": "Duelos (más/menos goles, tenis, pronósticos de dos opciones)",
     "duelFavoritePosition": "¿El favorito está en 1 (A) o en 2 (B)?",
     "duelFavoriteA": "El favorito es 1 (A)",
     "duelFavoriteB": "El favorito es 2 (B)",

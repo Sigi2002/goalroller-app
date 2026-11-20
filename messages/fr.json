@@ -161,7 +161,7 @@
     "rangeError": "Saisis une cote du favori comprise entre {min} et {max}.",
     "modeLabel": "Choisis ton mode de jeu",
     "footballMode": "Pronostics football (1 / X / 2)",
-    "duelMode": "Duels (plus/moins de buts, tennis, golf, pronostic à deux choix)",
+    "duelMode": "Duels (plus/moins de buts, tennis, pronostic à deux choix)",
     "duelFavoritePosition": "Le favori est-il en 1 (A) ou en 2 (B) ?",
     "duelFavoriteA": "Le favori est en 1 (A)",
     "duelFavoriteB": "Le favori est en 2 (B)",
