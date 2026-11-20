@@ -41,7 +41,8 @@ themes.
 The result card keeps its theme-aware surface inside a 4px animated conic
 gradient using the five GoalRoller colours. It completes a rotation in five
 seconds; reduced-motion preferences leave the gradient static. Its title is
-uppercase and bold, with larger result and supporting text.
+uppercase and bold. The predicted tip appears above the dice outcome and uses
+larger type to make its priority clear.
 
 ## The mark
 - **Logo:** `public/brand/logo.jpg` — the supplied GoalRoller mark, shown in

@@ -679,7 +679,15 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 p-5 md:p-6">
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-4">
+                <div>
+                  <p className="text-muted-foreground text-lg font-semibold">
+                    {t("tipLabel")}
+                  </p>
+                  <p className="break-words text-2xl leading-tight font-extrabold md:text-3xl">
+                    {tipLabel}
+                  </p>
+                </div>
                 <div>
                   <p className="text-muted-foreground text-base font-medium">
                     {t("outcomeLabel")}
@@ -687,12 +695,6 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   <p className="break-words text-lg leading-relaxed font-bold md:text-xl">
                     {displayedOutcomeText}
                   </p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-base font-medium">
-                    {t("tipLabel")}
-                  </p>
-                  <p className="text-lg font-bold md:text-xl">{tipLabel}</p>
                 </div>
               </div>
               {result.awayNotice && (
