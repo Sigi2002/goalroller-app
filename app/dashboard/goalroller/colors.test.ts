@@ -18,6 +18,9 @@ const colorPairs = [
   ["goalroller-odds-active", "goalroller-paper"],
   ["goalroller-dice-base", "goalroller-paper"],
   ["goalroller-dice-active", "goalroller-paper"],
+  ["goalroller-roll-base", "goalroller-paper"],
+  ["goalroller-roll-hover", "goalroller-paper"],
+  ["goalroller-roll-dark-hover", "goalroller-paper"],
 ] as const;
 
 function colorRgb(theme: "light" | "dark", token: string) {

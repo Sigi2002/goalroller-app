@@ -553,11 +553,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               type="button"
               onClick={roll}
               disabled={!die || busy}
-              className={`text-goalroller-paper ${
-                rolling
-                  ? "bg-goalroller-dice-active hover:bg-goalroller-dice-active active:bg-goalroller-dice-active"
-                  : "bg-goalroller-dice-base hover:bg-goalroller-dice-active active:bg-goalroller-dice-active"
-              }`}
+              className="border-2 border-transparent bg-goalroller-roll-base font-semibold text-goalroller-paper transition-all hover:bg-goalroller-roll-hover active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 dark:border-goalroller-paper/70 dark:hover:bg-goalroller-roll-dark-hover dark:hover:border-goalroller-paper dark:shadow-(--elevation-overlay)"
             >
               <Dices aria-hidden />
               {rolling

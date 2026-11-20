@@ -35,7 +35,8 @@ themes.
 | Football favourite | Gray when unselected | normal red (red-500) with black text when selected |
 | Duel favourite position | Gray when unselected | the same normal red (red-500) with black text when selected |
 | Odds input | blue-400 when empty or invalid | Matching die colour and text when the quote is valid |
-| Roll button and die panel | gray-700 | black |
+| Roll button | Black with white semibold text | Anthracite on hover; pressed feedback; light border and elevation in dark mode |
+| Die panel | gray-700 | — |
 
 ## The mark
 - **Logo:** `public/brand/logo.jpg` — the supplied GoalRoller mark, shown in

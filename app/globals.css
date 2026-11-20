@@ -95,6 +95,9 @@
   --goalroller-odds-active: hsl(224.28 76.33% 48.04%);
   --goalroller-dice-base: hsl(216.92 19.12% 26.67%);
   --goalroller-dice-active: hsl(0 0% 0%);
+  --goalroller-roll-base: hsl(0 0% 0%);
+  --goalroller-roll-hover: hsl(0 0% 12.16%);
+  --goalroller-roll-dark-hover: hsl(0 0% 9.02%);
   --goalroller-ink: hsl(0 0% 0%);
   --goalroller-paper: hsl(0 0% 100%);
 
@@ -168,6 +171,9 @@
   --goalroller-odds-active: hsl(224.28 76.33% 48.04%);
   --goalroller-dice-base: hsl(216.92 19.12% 26.67%);
   --goalroller-dice-active: hsl(0 0% 0%);
+  --goalroller-roll-base: hsl(0 0% 0%);
+  --goalroller-roll-hover: hsl(0 0% 12.16%);
+  --goalroller-roll-dark-hover: hsl(0 0% 9.02%);
   --goalroller-ink: hsl(0 0% 0%);
   --goalroller-paper: hsl(0 0% 100%);
 
@@ -259,6 +265,9 @@
   --color-goalroller-odds-active: var(--goalroller-odds-active);
   --color-goalroller-dice-base: var(--goalroller-dice-base);
   --color-goalroller-dice-active: var(--goalroller-dice-active);
+  --color-goalroller-roll-base: var(--goalroller-roll-base);
+  --color-goalroller-roll-hover: var(--goalroller-roll-hover);
+  --color-goalroller-roll-dark-hover: var(--goalroller-roll-dark-hover);
   --color-goalroller-ink: var(--goalroller-ink);
   --color-goalroller-paper: var(--goalroller-paper);
 
