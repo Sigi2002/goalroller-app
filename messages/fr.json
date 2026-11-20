@@ -144,6 +144,7 @@
   },
   "goalroller": {
     "title": "GoalRoller",
+    "favoriteExplanation": "GoalRoller lance toujours en faveur du favori ; par exemple, un « 1 » obtenu signifie toujours une victoire du favori !",
     "subtitle": "Choisis le mode de jeu et lance le pronostic correspondant.",
     "setupTitle": "Prépare ton pronostic",
     "setupBody": "La cote sélectionne automatiquement le dé GoalRoller correspondant. Le résultat n'est pas enregistré.",

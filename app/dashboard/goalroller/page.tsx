@@ -28,7 +28,11 @@ export default async function GoalrollerPage() {
 
   return (
     <>
-      <PageHeader title={t("title")} description={t("subtitle")} />
+      <PageHeader
+        title={t("title")}
+        descriptionBefore={t("favoriteExplanation")}
+        description={t("subtitle")}
+      />
       {hasAccess ? (
         <GoalrollerTool imageUrls={imageUrls} />
       ) : (

@@ -144,6 +144,7 @@
   },
   "goalroller": {
     "title": "GoalRoller",
+    "favoriteExplanation": "GoalRoller always rolls in favour of the favourite. For example, rolling a \"1\" always means a win for the favourite!",
     "subtitle": "Choose a game mode and roll the matching tip.",
     "setupTitle": "Set up your tip",
     "setupBody": "The odds automatically select the matching GoalRoller die. Your result is not stored.",

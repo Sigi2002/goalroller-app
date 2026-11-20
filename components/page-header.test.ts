@@ -192,6 +192,15 @@ describe("components/page-header.tsx", () => {
     expect(eyebrowIsGuarded(source)).toBe(true);
   });
 
+  it("renders an optional leading paragraph before the main description", () => {
+    const leadingParagraph = source.indexOf("{descriptionBefore && (");
+    const mainDescription = source.indexOf("{description && (");
+
+    expect(source).toContain("descriptionBefore?:");
+    expect(leadingParagraph).toBeGreaterThan(-1);
+    expect(leadingParagraph).toBeLessThan(mainDescription);
+  });
+
   it("keeps the two class decisions that have a reason written beside them", () => {
     // `truncate`: a long title must not push the actions off the row.
     expect(source).toContain("truncate");

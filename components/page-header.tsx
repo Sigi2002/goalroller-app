@@ -4,8 +4,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-// The head of every page: an optional eyebrow above the title, the title, one
-// sentence of explanation, the primary action on the right — and a rule under
+// The head of every page: an optional eyebrow above the title, the title,
+// explanatory paragraphs, the primary action on the right — and a rule under
 // all of it.
 //
 // Always use this instead of your own <h1> — then all pages share the same
@@ -35,6 +35,7 @@ import { cn } from "@/lib/utils";
 export function PageHeader({
   eyebrow,
   title,
+  descriptionBefore,
   description,
   children,
   className,
@@ -42,6 +43,8 @@ export function PageHeader({
   /** The section this page sits in. Rendered above the title, or not at all. */
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
+  /** Optional paragraph rendered before the main description. */
+  descriptionBefore?: React.ReactNode;
   description?: React.ReactNode;
   /** Actions on the right (buttons, menus). */
   children?: React.ReactNode;
@@ -70,6 +73,11 @@ export function PageHeader({
             two was the top of a structure. The step is at `sm` because the
             narrow layout has no room to spend on it. */}
         <h1 className="truncate text-2xl font-semibold sm:text-3xl">{title}</h1>
+        {descriptionBefore && (
+          <p className="text-muted-foreground max-w-2xl text-sm text-pretty">
+            {descriptionBefore}
+          </p>
+        )}
         {description && (
           // `max-w-2xl`: a one-sentence description running the full width of a
           // wide screen is the difference between a page that reads and one

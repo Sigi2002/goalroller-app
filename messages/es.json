@@ -144,6 +144,7 @@
   },
   "goalroller": {
     "title": "GoalRoller",
+    "favoriteExplanation": "GoalRoller siempre tira a favor del favorito; por ejemplo, sacar un «1» siempre significa una victoria del favorito.",
     "subtitle": "Elige el modo de juego y lanza el pronóstico correspondiente.",
     "setupTitle": "Prepara tu pronóstico",
     "setupBody": "La cuota selecciona automáticamente el dado GoalRoller correspondiente. El resultado no se guarda.",
