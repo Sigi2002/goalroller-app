@@ -8,11 +8,11 @@ const tokens = parseTokens(
 );
 
 const colorPairs = [
-  ["goalroller-mode-base", "goalroller-ink"],
+  ["muted", "foreground"],
+  ["secondary", "secondary-foreground"],
   ["goalroller-mode-active", "goalroller-ink"],
   ["goalroller-team-base", "goalroller-ink"],
   ["goalroller-team-active", "goalroller-paper"],
-  ["goalroller-favorite-base", "goalroller-ink"],
   ["goalroller-favorite-active", "goalroller-paper"],
   ["goalroller-odds-base", "goalroller-ink"],
   ["goalroller-odds-active", "goalroller-paper"],

@@ -347,7 +347,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             className={`h-auto min-h-10 whitespace-normal py-2 ${
               mode === "football"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
-                : "bg-goalroller-mode-base text-goalroller-ink hover:bg-goalroller-mode-active hover:text-goalroller-ink active:bg-goalroller-mode-active"
+                : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
             }`}
             disabled={busy}
             onClick={() => selectMode("football")}
@@ -361,7 +361,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             className={`h-auto min-h-10 whitespace-normal py-2 ${
               mode === "duels"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
-                : "bg-goalroller-mode-base text-goalroller-ink hover:bg-goalroller-mode-active hover:text-goalroller-ink active:bg-goalroller-mode-active"
+                : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
             }`}
             disabled={busy}
             onClick={() => selectMode("duels")}
@@ -418,7 +418,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={
                       favorite === "home"
                         ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
-                        : "bg-goalroller-team-base text-goalroller-ink hover:bg-goalroller-team-active hover:text-goalroller-paper active:bg-goalroller-team-active active:text-goalroller-paper"
+                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
                     onClick={() => {
@@ -437,7 +437,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={
                       favorite === "away"
                         ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
-                        : "bg-goalroller-team-base text-goalroller-ink hover:bg-goalroller-team-active hover:text-goalroller-paper active:bg-goalroller-team-active active:text-goalroller-paper"
+                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
                     onClick={() => {
@@ -466,7 +466,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={
                       duelFavoritePosition === "A"
                         ? "bg-goalroller-favorite-active text-goalroller-paper hover:bg-goalroller-favorite-active"
-                        : "bg-goalroller-favorite-base text-goalroller-ink hover:bg-goalroller-favorite-active hover:text-goalroller-paper active:bg-goalroller-favorite-active active:text-goalroller-paper"
+                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
                     onClick={() => {
@@ -487,7 +487,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={
                       duelFavoritePosition === "B"
                         ? "bg-goalroller-favorite-active text-goalroller-paper hover:bg-goalroller-favorite-active"
-                        : "bg-goalroller-favorite-base text-goalroller-ink hover:bg-goalroller-favorite-active hover:text-goalroller-paper active:bg-goalroller-favorite-active active:text-goalroller-paper"
+                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
                     onClick={() => {

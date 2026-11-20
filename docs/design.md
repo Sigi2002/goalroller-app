@@ -30,9 +30,10 @@ themes.
 
 | Area | Base | Active or selected |
 |---|---|---|
-| Mode selection | yellow-300 | yellow-600 |
-| Team names and football favourite | lime-400 | lime-700 |
-| Duel favourite position | red-400 | red-800 |
+| Mode selection | Gray when unselected | yellow-600 when selected |
+| Team names | lime-400 | lime-700 on interaction |
+| Football favourite | Gray when unselected | lime-700 when selected |
+| Duel favourite position | Gray when unselected | red-800 when selected |
 | Odds input | blue-400 when empty or invalid | Matching die colour and text when the quote is valid |
 | Roll button and die panel | gray-700 | black |
 
