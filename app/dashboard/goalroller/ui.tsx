@@ -674,9 +674,6 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               >
                 {t("resultTitle")}
               </CardTitle>
-              <CardDescription className="text-base font-medium">
-                {t("resultOdds", { odds: formatOdds(result.oddsCents) })}
-              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 p-5 md:p-6">
               <div className="space-y-4">
