@@ -90,8 +90,7 @@
   --goalroller-mode-active: hsl(50.44 97.85% 63.53%);
   --goalroller-team-base: hsl(82.71 77.97% 55.49%);
   --goalroller-team-active: hsl(85.87 78.42% 27.25%);
-  --goalroller-football-favorite-active: hsl(0 84.2% 60.2%);
-  --goalroller-favorite-active: hsl(0 70% 35.29%);
+  --goalroller-favorite-active: hsl(0 84.2% 60.2%);
   --goalroller-odds-base: hsl(213.12 93.9% 67.84%);
   --goalroller-odds-active: hsl(224.28 76.33% 48.04%);
   --goalroller-dice-base: hsl(216.92 19.12% 26.67%);
@@ -164,8 +163,7 @@
   --goalroller-mode-active: hsl(50.44 97.85% 63.53%);
   --goalroller-team-base: hsl(82.71 77.97% 55.49%);
   --goalroller-team-active: hsl(85.87 78.42% 27.25%);
-  --goalroller-football-favorite-active: hsl(0 84.2% 60.2%);
-  --goalroller-favorite-active: hsl(0 70% 35.29%);
+  --goalroller-favorite-active: hsl(0 84.2% 60.2%);
   --goalroller-odds-base: hsl(213.12 93.9% 67.84%);
   --goalroller-odds-active: hsl(224.28 76.33% 48.04%);
   --goalroller-dice-base: hsl(216.92 19.12% 26.67%);
@@ -256,7 +254,6 @@
   --color-goalroller-mode-active: var(--goalroller-mode-active);
   --color-goalroller-team-base: var(--goalroller-team-base);
   --color-goalroller-team-active: var(--goalroller-team-active);
-  --color-goalroller-football-favorite-active: var(--goalroller-football-favorite-active);
   --color-goalroller-favorite-active: var(--goalroller-favorite-active);
   --color-goalroller-odds-base: var(--goalroller-odds-base);
   --color-goalroller-odds-active: var(--goalroller-odds-active);
