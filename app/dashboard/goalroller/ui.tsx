@@ -417,7 +417,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     aria-pressed={favorite === "home"}
                     className={
                       favorite === "home"
-                        ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
+                        ? "bg-goalroller-football-favorite-active text-goalroller-ink hover:bg-goalroller-football-favorite-active active:bg-goalroller-football-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
@@ -436,7 +436,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     aria-pressed={favorite === "away"}
                     className={
                       favorite === "away"
-                        ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
+                        ? "bg-goalroller-football-favorite-active text-goalroller-ink hover:bg-goalroller-football-favorite-active active:bg-goalroller-football-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }
                     disabled={busy}
