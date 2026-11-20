@@ -30,7 +30,7 @@ themes.
 
 | Area | Base | Active or selected |
 |---|---|---|
-| Mode selection | Gray when unselected | yellow-600 when selected |
+| Mode selection | Gray when unselected | bright yellow (yellow-300) when selected |
 | Team names | lime-400 | lime-700 on interaction |
 | Football favourite | Gray when unselected | lime-700 when selected |
 | Duel favourite position | Gray when unselected | red-800 when selected |
