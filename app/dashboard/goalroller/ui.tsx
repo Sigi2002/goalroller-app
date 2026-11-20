@@ -665,18 +665,10 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
       )}
 
       {result && tipLabel && (
-        <div className="goalroller-result-frame rounded-2xl p-1">
-          <Card aria-live="polite">
-            <CardHeader>
-              <CardTitle
-                level="h2"
-                className="text-xl font-extrabold uppercase tracking-wide md:text-2xl"
-              >
-                {t("resultTitle")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 p-5 md:p-6">
-              <div className="space-y-4">
+        <div className="goalroller-result-frame rounded-2xl p-0.5">
+          <Card aria-live="polite" className="gap-0 py-0">
+            <CardContent className="space-y-3 p-4 md:p-5">
+              <div className="space-y-3">
                 <div>
                   <p className="text-muted-foreground text-lg font-semibold">
                     {t("tipLabel")}
