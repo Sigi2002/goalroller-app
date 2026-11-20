@@ -523,8 +523,14 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 style={
                   die
                     ? {
-                        backgroundColor: die.color,
-                        color: die.textColor,
+                        backgroundColor:
+                          die.id === "red"
+                            ? "var(--goalroller-favorite-active)"
+                            : die.color,
+                        color:
+                          die.id === "red"
+                            ? "var(--goalroller-ink)"
+                            : die.textColor,
                       }
                     : undefined
                 }
