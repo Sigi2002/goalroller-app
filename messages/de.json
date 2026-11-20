@@ -174,6 +174,7 @@
     "dieImageAlt": "{die} mit dem Ergebnis {outcome}",
     "emptyTitle": "Gib zuerst die Quote ein",
     "emptyBody": "Sobald sie im gültigen Bereich liegt, zeigen wir dir den passenden Würfel und seine zwölf Seiten.",
+    "placeholderLogoAlt": "GoalRoller-Logo mit fünf farbigen Würfeln",
     "roll": "Würfeln",
     "rolling": "Der Würfel rollt …",
     "checking": "Einen Moment …",

@@ -174,6 +174,7 @@
     "dieImageAlt": "{die} showing {outcome}",
     "emptyTitle": "Enter the odds first",
     "emptyBody": "Once they are in range, we will show the matching die and its twelve faces.",
+    "placeholderLogoAlt": "GoalRoller logo with five colored dice",
     "roll": "Roll",
     "rolling": "Rolling …",
     "checking": "One moment …",

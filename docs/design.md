@@ -67,7 +67,9 @@ priority clear.
 
 ## Signature element
 The selected coloured twelve-sided die is the main visual result on the
-GoalRoller tool.
+GoalRoller tool. Before a valid quote is entered, its placeholder shows
+`public/icons/icon-192.png`; entering a valid quote replaces the logo with the
+matching die.
 
 ## Do / Don't
 - Keep the app-wide brand accent blue; use the five die colours only for the

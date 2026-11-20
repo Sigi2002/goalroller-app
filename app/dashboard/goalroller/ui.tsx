@@ -652,7 +652,16 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             </div>
           ) : (
             <EmptyState
-              icon={Dices}
+              illustration={
+                <Figure
+                  src="/icons/icon-192.png"
+                  alt={t("placeholderLogoAlt")}
+                  width={192}
+                  height={192}
+                  sizes="112px"
+                  className="size-28"
+                />
+              }
               title={t("emptyTitle")}
               description={t("emptyBody")}
             />

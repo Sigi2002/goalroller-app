@@ -20,12 +20,14 @@ import { cn } from "@/lib/utils";
 //   </EmptyState>
 export function EmptyState({
   icon: Icon,
+  illustration,
   title,
   description,
   children,
   className,
 }: {
   icon?: LucideIcon;
+  illustration?: React.ReactNode;
   title: React.ReactNode;
   description?: React.ReactNode;
   /** Action below (optional). */
@@ -39,11 +41,13 @@ export function EmptyState({
         className,
       )}
     >
-      {Icon && (
+      {illustration ? (
+        <div className="grid place-items-center">{illustration}</div>
+      ) : Icon ? (
         <div className="bg-muted text-muted-foreground grid size-11 place-items-center rounded-full">
           <Icon aria-hidden className="size-5" />
         </div>
-      )}
+      ) : null}
       <div className="space-y-1">
         <p className="font-medium">{title}</p>
         {description && (
