@@ -33,7 +33,7 @@ themes.
 | Mode selection | yellow-300 | yellow-600 |
 | Team names and football favourite | lime-400 | lime-700 |
 | Duel favourite position | red-400 | red-800 |
-| Odds input | blue-400 | blue-700 |
+| Odds input | blue-400 when empty or invalid | Matching die colour and text when the quote is valid |
 | Roll button and die panel | gray-700 | black |
 
 ## The mark

@@ -515,7 +515,19 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 aria-invalid={Boolean(oddsError)}
                 aria-describedby="favorite-odds-help"
                 disabled={busy}
-                className="bg-goalroller-odds-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-odds-active hover:text-goalroller-paper focus:bg-goalroller-odds-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-odds-base dark:hover:bg-goalroller-odds-active dark:focus:bg-goalroller-odds-active"
+                className={
+                  die
+                    ? undefined
+                    : "bg-goalroller-odds-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-odds-active hover:text-goalroller-paper focus:bg-goalroller-odds-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-odds-base dark:hover:bg-goalroller-odds-active dark:focus:bg-goalroller-odds-active"
+                }
+                style={
+                  die
+                    ? {
+                        backgroundColor: die.color,
+                        color: die.textColor,
+                      }
+                    : undefined
+                }
                 onChange={(event) => {
                   setOdds(event.target.value);
                   setResult(null);
