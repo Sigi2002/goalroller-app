@@ -344,7 +344,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             type="button"
             variant={mode === "football" ? "default" : "outline"}
             aria-pressed={mode === "football"}
-            className="h-auto min-h-10 whitespace-normal py-2"
+            className={`h-auto min-h-10 whitespace-normal py-2 ${
+              mode === "football"
+                ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
+                : "bg-goalroller-mode-base text-goalroller-ink hover:bg-goalroller-mode-active hover:text-goalroller-ink active:bg-goalroller-mode-active"
+            }`}
             disabled={busy}
             onClick={() => selectMode("football")}
           >
@@ -354,7 +358,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             type="button"
             variant={mode === "duels" ? "default" : "outline"}
             aria-pressed={mode === "duels"}
-            className="h-auto min-h-10 whitespace-normal py-2"
+            className={`h-auto min-h-10 whitespace-normal py-2 ${
+              mode === "duels"
+                ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
+                : "bg-goalroller-mode-base text-goalroller-ink hover:bg-goalroller-mode-active hover:text-goalroller-ink active:bg-goalroller-mode-active"
+            }`}
             disabled={busy}
             onClick={() => selectMode("duels")}
           >
@@ -379,6 +387,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   placeholder={t("homeTeamPlaceholder")}
                   value={homeTeam}
                   disabled={busy}
+                  className="bg-goalroller-team-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
                   onChange={(event) => setHomeTeam(event.target.value)}
                 />
               </div>
@@ -390,6 +399,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   placeholder={t("awayTeamPlaceholder")}
                   value={awayTeam}
                   disabled={busy}
+                  className="bg-goalroller-team-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
                   onChange={(event) => setAwayTeam(event.target.value)}
                 />
               </div>
@@ -405,6 +415,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     type="button"
                     variant={favorite === "home" ? "default" : "outline"}
                     aria-pressed={favorite === "home"}
+                    className={
+                      favorite === "home"
+                        ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
+                        : "bg-goalroller-team-base text-goalroller-ink hover:bg-goalroller-team-active hover:text-goalroller-paper active:bg-goalroller-team-active active:text-goalroller-paper"
+                    }
                     disabled={busy}
                     onClick={() => {
                       setFavorite("home");
@@ -419,6 +434,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     type="button"
                     variant={favorite === "away" ? "default" : "outline"}
                     aria-pressed={favorite === "away"}
+                    className={
+                      favorite === "away"
+                        ? "bg-goalroller-team-active text-goalroller-paper hover:bg-goalroller-team-active"
+                        : "bg-goalroller-team-base text-goalroller-ink hover:bg-goalroller-team-active hover:text-goalroller-paper active:bg-goalroller-team-active active:text-goalroller-paper"
+                    }
                     disabled={busy}
                     onClick={() => {
                       setFavorite("away");
@@ -443,6 +463,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                       duelFavoritePosition === "A" ? "default" : "outline"
                     }
                     aria-pressed={duelFavoritePosition === "A"}
+                    className={
+                      duelFavoritePosition === "A"
+                        ? "bg-goalroller-favorite-active text-goalroller-paper hover:bg-goalroller-favorite-active"
+                        : "bg-goalroller-favorite-base text-goalroller-ink hover:bg-goalroller-favorite-active hover:text-goalroller-paper active:bg-goalroller-favorite-active active:text-goalroller-paper"
+                    }
                     disabled={busy}
                     onClick={() => {
                       setDuelFavoritePosition("A");
@@ -459,6 +484,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                       duelFavoritePosition === "B" ? "default" : "outline"
                     }
                     aria-pressed={duelFavoritePosition === "B"}
+                    className={
+                      duelFavoritePosition === "B"
+                        ? "bg-goalroller-favorite-active text-goalroller-paper hover:bg-goalroller-favorite-active"
+                        : "bg-goalroller-favorite-base text-goalroller-ink hover:bg-goalroller-favorite-active hover:text-goalroller-paper active:bg-goalroller-favorite-active active:text-goalroller-paper"
+                    }
                     disabled={busy}
                     onClick={() => {
                       setDuelFavoritePosition("B");
@@ -485,6 +515,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 aria-invalid={Boolean(oddsError)}
                 aria-describedby="favorite-odds-help"
                 disabled={busy}
+                className="bg-goalroller-odds-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-odds-active hover:text-goalroller-paper focus:bg-goalroller-odds-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-odds-base dark:hover:bg-goalroller-odds-active dark:focus:bg-goalroller-odds-active"
                 onChange={(event) => {
                   setOdds(event.target.value);
                   setResult(null);
@@ -506,7 +537,16 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               </Callout>
             )}
 
-            <Button type="button" onClick={roll} disabled={!die || busy}>
+            <Button
+              type="button"
+              onClick={roll}
+              disabled={!die || busy}
+              className={`text-goalroller-paper ${
+                rolling
+                  ? "bg-goalroller-dice-active hover:bg-goalroller-dice-active active:bg-goalroller-dice-active"
+                  : "bg-goalroller-dice-base hover:bg-goalroller-dice-active active:bg-goalroller-dice-active"
+              }`}
+            >
               <Dices aria-hidden />
               {rolling
                 ? t("rolling")
@@ -519,7 +559,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
           </div>
 
           {die && counts && dieName ? (
-            <div className="flex flex-col items-center justify-center gap-4 rounded-xl border bg-muted/40 p-5 text-center">
+            <div className="flex flex-col items-center justify-center gap-4 rounded-xl border bg-goalroller-dice-base p-5 text-center text-goalroller-paper dark:bg-goalroller-dice-base">
               <p className="text-sm font-semibold">{t("selectedDie")}</p>
               {displayedImage && displayedImageAsset && displayedImageUrl ? (
                 <Figure
@@ -577,7 +617,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               )}
               <div className="space-y-1">
                 <p className="font-semibold">{dieName}</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-goalroller-paper/80 text-sm">
                   {t("activeRange", {
                     min: formatOdds(
                       parsed.ok ? parsed.range.minCents : die.minCents,

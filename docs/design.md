@@ -22,6 +22,20 @@ CLAUDE.md § UI or docs/ux.md._
 - **Body:** Figtree — shipped, unchanged
 - **Headings:** Source Serif 4 — shipped, unchanged
 
+## GoalRoller interaction palette
+The tool uses the five die colours for control feedback without changing the
+app-wide blue `--primary` accent. These are fixed component colours, not
+additional brand dials, and each foreground is chosen for contrast in both
+themes.
+
+| Area | Base | Active or selected |
+|---|---|---|
+| Mode selection | yellow-300 | yellow-600 |
+| Team names and football favourite | lime-400 | lime-700 |
+| Duel favourite position | red-400 | red-800 |
+| Odds input | blue-400 | blue-700 |
+| Roll button and die panel | gray-700 | black |
+
 ## The mark
 - **Logo:** `public/brand/logo.jpg` — the supplied GoalRoller mark, shown in
   the header and on the sign-in page
@@ -48,6 +62,7 @@ The selected coloured twelve-sided die is the main visual result on the
 GoalRoller tool.
 
 ## Do / Don't
-- Keep the five die colours distinct from the brand accent.
+- Keep the app-wide brand accent blue; use the five die colours only for the
+  GoalRoller controls listed above and the dice themselves.
 - Put the draw result and any away-favourite tip directly below the die.
 - Keep the interface text in German.
