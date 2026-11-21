@@ -74,9 +74,10 @@ export default {
     // Route protection (works together with the matcher in proxy.ts).
     authorized({ auth, request }) {
       const path = request.nextUrl.pathname;
-      if (path.startsWith("/dashboard")) return Boolean(auth?.user);
+  //Für Freundes-Test ohne Login freigeschaltet, (später wieder aktivieren):
+      if (path.startsWith("/dashboard")) return true;
       return true;
-    },
+        },
     jwt({ token, user }) {
       if (user) {
         token.role = (user as { role?: string }).role ?? "member";
