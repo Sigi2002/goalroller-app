@@ -35,7 +35,17 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await requireActiveUser();
+//Für Freundes-Test ohne Log-in deaktiviert, (später wieder aktivierten):  
+//  const session = await requireActiveUser();
+const session = {
+  user: {
+    id: "test-user-id",
+    name: "Goalroller Tester",
+    email: "tester@goalroller.local",
+    role: "member" as const,
+    impersonation: null as { id: string } | null,
+  },
+};
 
   async function signOutAction() {
     "use server";
