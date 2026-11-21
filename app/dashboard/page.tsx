@@ -57,8 +57,14 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ purchase?: string }>;
 }) {
-  const session = await auth();
-  if (!session?.user) redirect("/login");
+//  const session = await auth();
+// if (!session?.user) redirect("/login");
+
+// Für Freundes-Test ohne Log-in deaktiviert, (später wieder aktivieren):
+const session = { user: { id: "test-user-id", email: "tester@goalroller.local", role: "member" } };
+
+
+
 
   const t = await getTranslations("dashboard");
   const format = await getFormatter();
