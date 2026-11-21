@@ -25,3 +25,5 @@ next-env.d.ts
 /*.png
 /*.jpg
 /*.jpeg
+mode_modules/
+next/

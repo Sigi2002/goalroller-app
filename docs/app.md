@@ -35,7 +35,8 @@ aber Preis und Digistore24-Produkt sind noch nicht festgelegt.
   Je nach Modus wählt es den passenden GoalRoller-Würfel und zeigt dessen Bild
   direkt bei einer gültigen Quote sowie die zwölfseitige Verteilung. Nach drei
   Sekunden Animation zeigt es das Bild des gewürfelten Ergebnisses für 1, X
-  oder 2. Das Ergebnis lässt sich teilen oder kopieren.
+  oder 2. Das Ergebnis lässt sich teilen oder kopieren; der geteilte Text nennt
+  Paarung, Favorit, Quote, Würfel und Ergebnis und weist auf GoalRoller hin.
 - **Done when:** Ein Nutzer kann den Modus wählen, die Quote und
   Favoritenposition eingeben, mit dem passenden GoalRoller-Würfel würfeln und
   den zugehörigen Tipp sehen und teilen.

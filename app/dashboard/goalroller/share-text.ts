@@ -1,4 +1,23 @@
-import type { GameMode, Outcome } from "@/lib/goalroller/dice";
+import type {
+  DuelFavoritePosition,
+  Favorite,
+  GameMode,
+  Outcome,
+} from "@/lib/goalroller/dice";
+
+export function favoriteLabelForShare(
+  mode: GameMode,
+  favorite: Favorite,
+  duelFavoritePosition: DuelFavoritePosition,
+  homeTeam: string,
+  awayTeam: string,
+  labels: { home: string; away: string },
+): string {
+  if (mode === "duels") return duelFavoritePosition;
+
+  const team = favorite === "home" ? homeTeam.trim() : awayTeam.trim();
+  return team || (favorite === "home" ? labels.home : labels.away);
+}
 
 export function withMatchLine(
   message: string,

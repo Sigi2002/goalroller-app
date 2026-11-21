@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Copy, Dices, Share2 } from "lucide-react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
@@ -30,7 +31,11 @@ import {
   type Outcome,
 } from "@/lib/goalroller/dice";
 import { recordFirstSuccessfulRoll } from "./actions";
-import { displayOutcomeText, withMatchLine } from "./share-text";
+import {
+  displayOutcomeText,
+  favoriteLabelForShare,
+  withMatchLine,
+} from "./share-text";
 import {
   goalrollerRollImageAssetFor,
   goalrollerPreviewImageFor,
@@ -236,6 +241,17 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             : t("draw");
 
     const shareValues = {
+      favorite: favoriteLabelForShare(
+        value.mode,
+        favorite,
+        duelFavoritePosition,
+        homeTeam,
+        awayTeam,
+        {
+          home: t("homeTeamPlaceholder"),
+          away: t("awayTeamPlaceholder"),
+        },
+      ),
       odds: formatOdds(value.oddsCents),
       die: dieName,
       one: value.counts["1"],
@@ -247,6 +263,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
         t("duelDrawResult"),
       ),
       tip: tipLabel,
+      note: t("shareNote"),
     };
 
     const message = value.mode === "duels"
@@ -273,14 +290,20 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
     try {
       if (typeof navigator.share === "function") {
         await navigator.share({ title: t("shareTitle"), text });
-        setFeedback({ variant: "success", message: t("shareSuccess") });
+        setFeedback(null);
+        toast.success(t("shareSuccess"), { duration: 2500 });
         return;
       }
-      await navigator.clipboard.writeText(text);
-      setFeedback({ variant: "success", message: t("copySuccess") });
     } catch (error: unknown) {
       if (error instanceof DOMException && error.name === "AbortError") return;
-      console.error("[goalroller] Could not share tip", error);
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setFeedback(null);
+      toast.success(t("copySuccess"), { duration: 2500 });
+    } catch (error: unknown) {
+      console.error("[goalroller] Could not share or copy tip", error);
       setFeedback({ variant: "danger", message: t("shareFailed") });
     }
   }
@@ -707,7 +730,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   <Copy aria-hidden />
                   {t("copy")}
                 </Button>
-                <Button type="button" variant="outline" onClick={shareResult}>
+                <Button type="button" onClick={shareResult}>
                   <Share2 aria-hidden />
                   {t("share")}
                 </Button>

@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { displayOutcomeText, withMatchLine } from "./share-text";
+import {
+  displayOutcomeText,
+  favoriteLabelForShare,
+  withMatchLine,
+} from "./share-text";
 
 describe("GoalRoller shared match line", () => {
   it("adds trimmed team names as a prominent match line", () => {
@@ -20,6 +24,32 @@ describe("GoalRoller shared match line", () => {
 
   it("does not add a match line when both names are blank", () => {
     expect(withMatchLine("Result: X", " ", "\n\t")).toBe("Result: X");
+  });
+});
+
+describe("GoalRoller shared favorite label", () => {
+  it("uses the selected named team or its localized fallback", () => {
+    expect(
+      favoriteLabelForShare("football", "home", "A", " FC Bayern ", "BVB", {
+        home: "Home team",
+        away: "Away team",
+      }),
+    ).toBe("FC Bayern");
+    expect(
+      favoriteLabelForShare("football", "away", "A", "  ", "  ", {
+        home: "Home team",
+        away: "Away team",
+      }),
+    ).toBe("Away team");
+  });
+
+  it("uses the selected duel position as the favorite", () => {
+    expect(
+      favoriteLabelForShare("duels", "home", "B", "Home", "Away", {
+        home: "Home team",
+        away: "Away team",
+      }),
+    ).toBe("B");
   });
 });
 

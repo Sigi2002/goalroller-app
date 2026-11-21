@@ -30,7 +30,13 @@ export default async function GoalrollerPage() {
     <>
       <PageHeader
         title={t("title")}
-        descriptionBefore={t("favoriteExplanation")}
+        descriptionBefore={
+          <>
+            {t("intro")}
+            <br />
+            {t("favoriteExplanation")}
+          </>
+        }
         description={t("subtitle")}
       />
       {hasAccess ? (
