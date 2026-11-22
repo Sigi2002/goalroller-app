@@ -378,6 +378,53 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
 
   return (
     <div className="space-y-6">
+      <style>{`
+        @keyframes goalroller-spin-3s {
+          0% {
+            transform: rotate(0deg) scale(1);
+          }
+          20% {
+            transform: rotate(72deg) scale(1.07);
+          }
+          45% {
+            transform: rotate(162deg) scale(0.96);
+          }
+          70% {
+            transform: rotate(252deg) scale(1.06);
+          }
+          90% {
+            transform: rotate(324deg) scale(1.02);
+          }
+          100% {
+            transform: rotate(360deg) scale(1);
+          }
+        }
+
+        @keyframes goalroller-land-3s {
+          0% {
+            transform: scale(0.92);
+          }
+          60% {
+            transform: scale(1.07);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        .goalroller-die {
+          transition: transform 200ms ease, filter 200ms ease;
+        }
+
+        .goalroller-die--rolling {
+          animation: goalroller-spin-3s 0.75s linear infinite;
+        }
+
+        .goalroller-die--landed {
+          animation: goalroller-land-3s 320ms ease-out;
+        }
+      `}</style>
+
       <fieldset className="space-y-2">
         <legend className="text-sm font-medium">{t("modeLabel")}</legend>
         <div className="grid gap-2 sm:grid-cols-2" role="group">
