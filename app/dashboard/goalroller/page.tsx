@@ -4,8 +4,9 @@ import { Dices } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/page-header";
-import { requireActiveUser } from "@/lib/authz";
-import { hasPlan } from "@/lib/entitlements/manage";
+// Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
+// import { requireActiveUser } from "@/lib/authz";
+// import { hasPlan } from "@/lib/entitlements/manage";
 import { GOALROLLER_PRODUCT_KEY } from "@/lib/goalroller/config";
 import { goalrollerRollImageUrlsFor } from "./media";
 import { GoalrollerTool } from "./ui";
@@ -16,9 +17,20 @@ export async function generateMetadata() {
 }
 
 export default async function GoalrollerPage() {
-  const session = await requireActiveUser();
+  // Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
+  // const session = await requireActiveUser();
+  const session = {
+    user: {
+      id: "test-user-id",
+      role: "member" as const,
+    },
+  };
+
   const t = await getTranslations("goalroller");
-  const hasAccess = await hasPlan(session.user.id, GOALROLLER_PRODUCT_KEY);
+  // Für den Testmodus direkt freigeschaltet:
+  const hasAccess = true;
+  // const hasAccess = await hasPlan(session.user.id, GOALROLLER_PRODUCT_KEY);
+
   const imageUrls = hasAccess
     ? await goalrollerRollImageUrlsFor({
         memberId: session.user.id,
