@@ -57,14 +57,13 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ purchase?: string }>;
 }) {
-//  const session = await auth();
-// if (!session?.user) redirect("/login");
+  // const session = await auth();
+  // if (!session?.user) redirect("/login");
 
-// Für Freundes-Test ohne Log-in deaktiviert, (später wieder aktivieren):
-const session = { user: { id: "test-user-id", email: "tester@goalroller.local", role: "member" } };
-
-
-
+  // Für Freundes-Test ohne Log-in deaktiviert, (später wieder aktivieren):
+  const session = {
+    user: { id: "test-user-id", email: "tester@goalroller.local", role: "member" },
+  };
 
   const t = await getTranslations("dashboard");
   const format = await getFormatter();
@@ -273,7 +272,12 @@ const session = { user: { id: "test-user-id", email: "tester@goalroller.local", 
         <Card className="sm:col-span-2 lg:col-span-3">
           <CardHeader>
             <CardTitle level="h2">{t("goalrollerTitle")}</CardTitle>
-            <CardDescription>{t("goalrollerBody")}</CardDescription>
+            <CardDescription className="text-foreground/90 text-base font-medium leading-relaxed">
+              {t("goalrollerBody")}{" "}
+              <strong className="font-extrabold underline decoration-2 underline-offset-4">
+                GoalRoller würfelt immer auf den Favoriten.
+              </strong>
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild>
@@ -440,3 +444,4 @@ const session = { user: { id: "test-user-id", email: "tester@goalroller.local", 
     </>
   );
 }
+
