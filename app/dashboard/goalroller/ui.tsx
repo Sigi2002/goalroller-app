@@ -30,7 +30,8 @@ import {
   type OddsRange,
   type Outcome,
 } from "@/lib/goalroller/dice";
-import { recordFirstSuccessfulRoll } from "./actions";
+// Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
+// import { recordFirstSuccessfulRoll } from "./actions";
 import {
   displayOutcomeText,
   favoriteLabelForShare,
@@ -185,42 +186,58 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
         awayNotice = mapped.awayNotice;
       }
 
-      void recordFirstSuccessfulRoll()
-        .then((response) => {
-          if (!response.ok) {
-            setShownOutcome(null);
-            setFeedback({
-              variant: "danger",
-              message: t("accessLost"),
-            });
-            return;
-          }
+      // Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
+      // void recordFirstSuccessfulRoll()
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       setShownOutcome(null);
+      //       setFeedback({
+      //         variant: "danger",
+      //         message: t("accessLost"),
+      //       });
+      //       return;
+      //     }
+      //
+      //     setShownOutcome(outcome);
+      //     setResult({
+      //       mode: selectedMode,
+      //       oddsCents: selectedOdds,
+      //       dieId: selectedDie.id,
+      //       range: selectedRange,
+      //       counts: faceCounts(selectedDie),
+      //       outcome,
+      //       tip,
+      //       awayNotice,
+      //       duelVerdict,
+      //     });
+      //   })
+      //   .catch((error: unknown) => {
+      //     console.error("[goalroller] Could not record first-roll activation", error);
+      //     setShownOutcome(null);
+      //     setFeedback({
+      //       variant: "danger",
+      //       message: t("activationFailed"),
+      //     });
+      //   })
+      //   .finally(() => {
+      //     setSaving(false);
+      //     rollInProgressRef.current = false;
+      //   });
 
-          setShownOutcome(outcome);
-          setResult({
-            mode: selectedMode,
-            oddsCents: selectedOdds,
-            dieId: selectedDie.id,
-            range: selectedRange,
-            counts: faceCounts(selectedDie),
-            outcome,
-            tip,
-            awayNotice,
-            duelVerdict,
-          });
-        })
-        .catch((error: unknown) => {
-          console.error("[goalroller] Could not record first-roll activation", error);
-          setShownOutcome(null);
-          setFeedback({
-            variant: "danger",
-            message: t("activationFailed"),
-          });
-        })
-        .finally(() => {
-          setSaving(false);
-          rollInProgressRef.current = false;
-        });
+      setShownOutcome(outcome);
+      setResult({
+        mode: selectedMode,
+        oddsCents: selectedOdds,
+        dieId: selectedDie.id,
+        range: selectedRange,
+        counts: faceCounts(selectedDie),
+        outcome,
+        tip,
+        awayNotice,
+        duelVerdict,
+      });
+      setSaving(false);
+      rollInProgressRef.current = false;
     }, 3000);
   }
 
@@ -266,9 +283,10 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
       note: t("shareNote"),
     };
 
-    const message = value.mode === "duels"
-      ? t("duelShareText", shareValues)
-      : t("shareText", shareValues);
+    const message =
+      value.mode === "duels"
+        ? t("duelShareText", shareValues)
+        : t("shareText", shareValues);
 
     return withMatchLine(message, homeTeam, awayTeam);
   }
