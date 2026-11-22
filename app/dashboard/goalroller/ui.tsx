@@ -425,14 +425,14 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
         }
       `}</style>
 
-      <fieldset className="space-y-2">
-        <legend className="text-sm font-medium">{t("modeLabel")}</legend>
-        <div className="grid gap-2 sm:grid-cols-2" role="group">
+      <fieldset className="space-y-2.5">
+        <legend className="text-base font-semibold">{t("modeLabel")}</legend>
+        <div className="grid gap-2.5 sm:grid-cols-2" role="group">
           <Button
             type="button"
             variant={mode === "football" ? "default" : "outline"}
             aria-pressed={mode === "football"}
-            className={`h-auto min-h-10 whitespace-normal py-2 ${
+            className={`h-auto min-h-11 whitespace-normal py-2.5 text-base font-semibold ${
               mode === "football"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
                 : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
@@ -446,7 +446,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             type="button"
             variant={mode === "duels" ? "default" : "outline"}
             aria-pressed={mode === "duels"}
-            className={`h-auto min-h-10 whitespace-normal py-2 ${
+            className={`h-auto min-h-11 whitespace-normal py-2.5 text-base font-semibold ${
               mode === "duels"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
                 : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
@@ -462,52 +462,58 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
       <Card>
         <CardHeader>
           <CardTitle level="h2">{t("setupTitle")}</CardTitle>
-          <CardDescription>{t("setupBody")}</CardDescription>
+          <CardDescription className="text-base font-medium leading-relaxed">
+            {t("setupBody")}
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.8fr)]">
           <div className="space-y-5">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="home-team">{t("homeTeamLabel")}</Label>
+                <Label htmlFor="home-team" className="text-base font-semibold">
+                  {t("homeTeamLabel")}
+                </Label>
                 <Input
                   id="home-team"
                   type="text"
                   placeholder={t("homeTeamPlaceholder")}
                   value={homeTeam}
                   disabled={busy}
-                  className="bg-goalroller-team-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
+                  className="bg-goalroller-team-base text-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
                   onChange={(event) => setHomeTeam(event.target.value)}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="away-team">{t("awayTeamLabel")}</Label>
+                <Label htmlFor="away-team" className="text-base font-semibold">
+                  {t("awayTeamLabel")}
+                </Label>
                 <Input
                   id="away-team"
                   type="text"
                   placeholder={t("awayTeamPlaceholder")}
                   value={awayTeam}
                   disabled={busy}
-                  className="bg-goalroller-team-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
+                  className="bg-goalroller-team-base text-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-team-active hover:text-goalroller-paper focus:bg-goalroller-team-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-team-base dark:hover:bg-goalroller-team-active dark:focus:bg-goalroller-team-active"
                   onChange={(event) => setAwayTeam(event.target.value)}
                 />
               </div>
             </div>
 
             {mode === "football" ? (
-              <fieldset className="space-y-2">
-                <legend className="text-sm font-medium">
+              <fieldset className="space-y-2.5">
+                <legend className="text-base font-semibold">
                   {t("favoriteLabel")}
                 </legend>
-                <div className="grid gap-2 sm:grid-cols-2" role="group">
+                <div className="grid gap-2.5 sm:grid-cols-2" role="group">
                   <Button
                     type="button"
                     variant={favorite === "home" ? "default" : "outline"}
                     aria-pressed={favorite === "home"}
-                    className={
+                    className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "home"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
-                    }
+                    }`}
                     disabled={busy}
                     onClick={() => {
                       setFavorite("home");
@@ -522,11 +528,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     type="button"
                     variant={favorite === "away" ? "default" : "outline"}
                     aria-pressed={favorite === "away"}
-                    className={
+                    className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "away"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
-                    }
+                    }`}
                     disabled={busy}
                     onClick={() => {
                       setFavorite("away");
@@ -540,22 +546,22 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 </div>
               </fieldset>
             ) : (
-              <fieldset className="space-y-2">
-                <legend className="text-sm font-medium">
+              <fieldset className="space-y-2.5">
+                <legend className="text-base font-semibold">
                   {t("duelFavoritePosition")}
                 </legend>
-                <div className="grid gap-2 sm:grid-cols-2" role="group">
+                <div className="grid gap-2.5 sm:grid-cols-2" role="group">
                   <Button
                     type="button"
                     variant={
                       duelFavoritePosition === "A" ? "default" : "outline"
                     }
                     aria-pressed={duelFavoritePosition === "A"}
-                    className={
+                    className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "A"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
-                    }
+                    }`}
                     disabled={busy}
                     onClick={() => {
                       setDuelFavoritePosition("A");
@@ -572,11 +578,11 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                       duelFavoritePosition === "B" ? "default" : "outline"
                     }
                     aria-pressed={duelFavoritePosition === "B"}
-                    className={
+                    className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "B"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
                         : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
-                    }
+                    }`}
                     disabled={busy}
                     onClick={() => {
                       setDuelFavoritePosition("B");
@@ -592,7 +598,9 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="favorite-odds">{t("oddsLabel")}</Label>
+              <Label htmlFor="favorite-odds" className="text-base font-semibold">
+                {t("oddsLabel")}
+              </Label>
               <Input
                 id="favorite-odds"
                 type="text"
@@ -605,8 +613,8 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 disabled={busy}
                 className={
                   die
-                    ? undefined
-                    : "bg-goalroller-odds-base text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-odds-active hover:text-goalroller-paper focus:bg-goalroller-odds-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-odds-base dark:hover:bg-goalroller-odds-active dark:focus:bg-goalroller-odds-active"
+                    ? "text-base font-semibold"
+                    : "bg-goalroller-odds-base text-base font-semibold text-goalroller-ink placeholder:text-goalroller-ink/70 hover:bg-goalroller-odds-active hover:text-goalroller-paper focus:bg-goalroller-odds-active focus:text-goalroller-paper focus:placeholder:text-goalroller-paper/70 dark:bg-goalroller-odds-base dark:hover:bg-goalroller-odds-active dark:focus:bg-goalroller-odds-active"
                 }
                 style={
                   die
@@ -631,7 +639,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               />
               <p
                 id="favorite-odds-help"
-                className="text-muted-foreground text-sm"
+                className="text-muted-foreground text-base font-medium leading-relaxed"
               >
                 {oddsError ?? t("oddsHelp")}
               </p>
@@ -647,7 +655,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               type="button"
               onClick={roll}
               disabled={!die || busy}
-              className="border-2 border-transparent bg-goalroller-roll-base font-semibold text-goalroller-paper transition-all hover:bg-goalroller-roll-hover active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 dark:border-goalroller-paper/70 dark:hover:bg-goalroller-roll-dark-hover dark:hover:border-goalroller-paper dark:shadow-(--elevation-overlay)"
+              className="h-auto min-h-12 border-2 border-transparent bg-goalroller-roll-base px-5 py-3 text-base font-bold text-goalroller-paper transition-all hover:bg-goalroller-roll-hover active:scale-95 disabled:cursor-not-allowed disabled:opacity-60 dark:border-goalroller-paper/70 dark:hover:bg-goalroller-roll-dark-hover dark:hover:border-goalroller-paper dark:shadow-(--elevation-overlay)"
             >
               <Dices aria-hidden />
               {rolling
@@ -662,7 +670,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
 
           {die && counts && dieName ? (
             <div className="flex flex-col items-center justify-center gap-4 rounded-xl border bg-goalroller-dice-base p-5 text-center text-goalroller-paper dark:bg-goalroller-dice-base">
-              <p className="text-sm font-semibold">{t("selectedDie")}</p>
+              <p className="text-base font-bold">{t("selectedDie")}</p>
               {displayedImage && displayedImageAsset && displayedImageUrl ? (
                 <Figure
                   src={displayedImageUrl}
@@ -717,9 +725,9 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   </text>
                 </svg>
               )}
-              <div className="space-y-1">
-                <p className="font-semibold">{dieName}</p>
-                <p className="text-goalroller-paper/80 text-sm">
+              <div className="space-y-1.5">
+                <p className="text-lg font-bold">{dieName}</p>
+                <p className="text-goalroller-paper/90 text-base font-medium">
                   {t("activeRange", {
                     min: formatOdds(
                       parsed.ok ? parsed.range.minCents : die.minCents,
@@ -729,7 +737,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     ),
                   })}
                 </p>
-                <p className="text-sm font-medium">
+                <p className="text-base font-semibold">
                   {t("distribution", {
                     one: counts["1"],
                     draw: counts.X,
@@ -775,7 +783,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   </p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground text-base font-medium">
+                  <p className="text-muted-foreground text-base font-semibold">
                     {t("outcomeLabel")}
                   </p>
                   <p className="break-words text-lg leading-relaxed font-bold md:text-xl">
@@ -790,12 +798,21 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     : t("awayFavoriteLoses")}
                 </Callout>
               )}
-              <div className="flex flex-wrap gap-2">
-                <Button type="button" variant="outline" onClick={copyResult}>
+              <div className="flex flex-wrap gap-2.5">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-auto min-h-11 text-base font-semibold"
+                  onClick={copyResult}
+                >
                   <Copy aria-hidden />
                   {t("copy")}
                 </Button>
-                <Button type="button" onClick={shareResult}>
+                <Button
+                  type="button"
+                  className="h-auto min-h-11 text-base font-semibold"
+                  onClick={shareResult}
+                >
                   <Share2 aria-hidden />
                   {t("share")}
                 </Button>
