@@ -47,11 +47,17 @@ export default async function GoalrollerPage() {
       <PageHeader
         title={t("title")}
         descriptionBefore={
-          <>
-            {t("intro")}
-            <br />
-            {t("favoriteExplanation")}
-          </>
+          <div className="text-foreground space-y-2 text-base leading-relaxed font-medium md:text-lg">
+            <p>{t("intro")}</p>
+            <p>
+              <strong className="font-extrabold underline decoration-2 underline-offset-4">
+                GoalRoller würfelt immer auf den Favoriten.
+              </strong>{" "}
+              <span>
+                z. B. ist eine gewürfelte &bdquo;1&ldquo; immer Sieg des Favoriten!
+              </span>
+            </p>
+          </div>
         }
         description={t("subtitle")}
       />
