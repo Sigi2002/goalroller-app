@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/page-header";
 // Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
 // import { requireActiveUser } from "@/lib/authz";
 // import { hasPlan } from "@/lib/entitlements/manage";
-import { GOALROLLER_PRODUCT_KEY } from "@/lib/goalroller/config";
+// import { GOALROLLER_PRODUCT_KEY } from "@/lib/goalroller/config";
 import { goalrollerRollImageUrlsFor } from "./media";
 import { GoalrollerTool } from "./ui";
 
@@ -27,16 +27,20 @@ export default async function GoalrollerPage() {
   };
 
   const t = await getTranslations("goalroller");
-  // Für den Testmodus direkt freigeschaltet:
   const hasAccess = true;
   // const hasAccess = await hasPlan(session.user.id, GOALROLLER_PRODUCT_KEY);
 
-  const imageUrls = hasAccess
-    ? await goalrollerRollImageUrlsFor({
+  let imageUrls: Awaited<ReturnType<typeof goalrollerRollImageUrlsFor>> = {};
+  if (hasAccess) {
+    try {
+      imageUrls = await goalrollerRollImageUrlsFor({
         memberId: session.user.id,
         role: session.user.role ?? null,
-      })
-    : {};
+      });
+    } catch {
+      imageUrls = {};
+    }
+  }
 
   return (
     <>
