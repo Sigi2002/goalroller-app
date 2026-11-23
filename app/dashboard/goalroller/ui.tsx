@@ -14,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { EmptyState } from "@/components/ui/empty-state";
 import { Figure } from "@/components/ui/figure";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -747,20 +746,21 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
               </div>
             </div>
           ) : (
-            <EmptyState
-              illustration={
-                <Figure
-                  src="/icons/icon-192.png"
-                  alt={t("placeholderLogoAlt")}
-                  width={192}
-                  height={192}
-                  sizes="112px"
-                  className="size-28"
-                />
-              }
-              title={t("emptyTitle")}
-              description={t("emptyBody")}
-            />
+            <div className="flex flex-col items-center justify-center gap-4 rounded-xl border bg-goalroller-dice-base p-5 text-center text-goalroller-paper dark:bg-goalroller-dice-base">
+              <p className="text-base font-bold">{t("emptyTitle")}</p>
+              <Figure
+                src="/icons/icon-192.png"
+                alt={t("placeholderLogoAlt")}
+                width={192}
+                height={192}
+                sizes="224px"
+                unoptimized
+                className="h-auto w-48 object-contain sm:w-56"
+              />
+              <p className="text-goalroller-paper/90 max-w-xs text-base font-medium leading-relaxed">
+                {t("emptyBody")}
+              </p>
+            </div>
           )}
         </CardContent>
       </Card>
