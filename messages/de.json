@@ -149,7 +149,7 @@
     "subtitle": ".",
     "setupTitle": "Deinen Tipp vorbereiten: Hole dir die Favoriten-Siegquote für deine Entscheidung bei einem Spieleanbieter. ",
     "setupBody": ".",
-    "favoriteLabel": "WICHTIG:Wer ist der Favorit?",
+    "favoriteLabel": "WICHTIG: Wer ist der Favorit?",
     "homeTeamLabel": ".",
     "homeTeamPlaceholder": "Heim-Team (optional)",
     "awayTeamLabel": ".",
@@ -164,7 +164,7 @@
     "modeLabel": "Wähle Fußball tippen oder Duell tippen.",
     "footballMode": "Fußball tippen (1 / X / 2)",
     "duelMode": "Duell tippen (Tennis, Tore +/- etc.)",
-    "duelFavoritePosition": "WICHTIG:Ist der Favorit auf 1 (A) oder 2 (B)?",
+    "duelFavoritePosition": "WICHTIG: Ist der Favorit auf 1 (A) oder 2 (B)?",
     "duelFavoriteA": "Favorit ist 1 (A)",
     "duelFavoriteB": "Favorit ist 2 (B)",
     "invalidOddsTitle": "Diese Quote passt noch nicht",
@@ -205,11 +205,11 @@
     "accessLost": "Dein GoalRoller-Zugang ist nicht mehr aktiv. Lade die Seite neu oder wende dich an den Betreiber.",
     "activationFailed": "Dein erster Wurf konnte gerade nicht bestätigt werden. Bitte versuche es noch einmal.",
     "dice": {
-      "yellow": "Gelber GoalRoller-Würfel",
-      "green": "Grüner GoalRoller-Würfel",
-      "red": "Roter GoalRoller-Würfel",
-      "blue": "Blauer GoalRoller-Würfel",
-      "black": "Schwarzer GoalRoller-Würfel"
+      "yellow": "Gelber GoalRoller",
+      "green": "Grüner GoalRoller",
+      "red": "Roter GoalRoller",
+      "blue": "Blauer GoalRoller",
+      "black": "Schwarzer GoalRoller"
     }
   },
   "onboarding": {
