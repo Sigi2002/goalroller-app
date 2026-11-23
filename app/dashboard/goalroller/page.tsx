@@ -16,6 +16,11 @@ export async function generateMetadata() {
   return { title: t("title") };
 }
 
+function isMeaningfulText(value: string): boolean {
+  const trimmed = value.trim();
+  return trimmed.length > 0 && trimmed !== ".";
+}
+
 export default async function GoalrollerPage() {
   // Für Freundes-Test ohne Login deaktiviert (später wieder aktivieren):
   // const session = await requireActiveUser();
@@ -30,8 +35,8 @@ export default async function GoalrollerPage() {
   const hasAccess = true;
   // const hasAccess = await hasPlan(session.user.id, GOALROLLER_PRODUCT_KEY);
 
-  const subtitleText = t("subtitle").trim();
-  const showSubtitle = subtitleText.length > 0 && subtitleText !== ".";
+  const showSubtitle = isMeaningfulText(t("subtitle"));
+  const showFavoriteExplanation = isMeaningfulText(t("favoriteExplanation"));
 
   let imageUrls: Awaited<ReturnType<typeof goalrollerRollImageUrlsFor>> = {};
   if (hasAccess) {
@@ -52,14 +57,7 @@ export default async function GoalrollerPage() {
         descriptionBefore={
           <div className="text-foreground space-y-2.5 text-base leading-relaxed font-semibold md:text-lg">
             <p>{t("intro")}</p>
-            <p>
-              <strong className="font-extrabold underline decoration-2 underline-offset-4">
-                GoalRoller würfelt immer auf den Favoriten.
-              </strong>{" "}
-              <span className="font-semibold">
-                z. B. ist eine gewürfelte &bdquo;1&ldquo; immer Sieg des Favoriten!
-              </span>
-            </p>
+            {showFavoriteExplanation ? <p>{t("favoriteExplanation")}</p> : null}
           </div>
         }
         description={
