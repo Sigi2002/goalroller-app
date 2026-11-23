@@ -30,6 +30,9 @@ export default async function GoalrollerPage() {
   const hasAccess = true;
   // const hasAccess = await hasPlan(session.user.id, GOALROLLER_PRODUCT_KEY);
 
+  const subtitleText = t("subtitle").trim();
+  const showSubtitle = subtitleText.length > 0 && subtitleText !== ".";
+
   let imageUrls: Awaited<ReturnType<typeof goalrollerRollImageUrlsFor>> = {};
   if (hasAccess) {
     try {
@@ -60,9 +63,11 @@ export default async function GoalrollerPage() {
           </div>
         }
         description={
-          <span className="text-foreground font-semibold">
-            {t("subtitle")}
-          </span>
+          showSubtitle ? (
+            <span className="text-foreground font-semibold">
+              {t("subtitle")}
+            </span>
+          ) : undefined
         }
       />
       {hasAccess ? (
