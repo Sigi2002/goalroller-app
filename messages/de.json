@@ -144,7 +144,7 @@
   },
   "goalroller": {
     "title": "GoalRoller",
-    "intro": "Die GoalRoller übersetzen die Favoritenquoten auf 5 mathematisch gewichtete Würfeln –für realistisch-spielerische Fußball- und Sport-Tipps.",
+    "intro": "Die GoalRoller übersetzen die Quoten der Buchmacher auf 5 mathematisch gewichtete 12-seitigen Würfeln. Spielerisch tippen – für Fußball und Sport mit Quoten-Systematik.",
     "favoriteExplanation": "Die GoalRoller würfeln immer auf den Favorit. Eine gewürfelte 1 ist immer ein Sieg des Favoriten!",
     "subtitle": ".",
     "setupTitle": "Deinen Tipp vorbereiten: Hole dir die Favoriten-Siegquote für deine Entscheidung bei einem Spieleanbieter. ",
@@ -163,7 +163,7 @@
     "rangeError": "Bitte eine Favoritenquote zwischen {min} und {max} eingeben.",
     "modeLabel": "Wähle Fußball tippen oder Duell tippen.",
     "footballMode": "Fußball tippen (1 / X / 2)",
-    "duelMode": "Duelle tippen (Tennis, Tore +/- etc.)",
+    "duelMode": "Duell tippen (Tennis, Tore +/- etc.)",
     "duelFavoritePosition": "Ist der Favorit auf 1 (A) oder 2 (B)?",
     "duelFavoriteA": "Favorit ist 1 (A)",
     "duelFavoriteB": "Favorit ist 2 (B)",
