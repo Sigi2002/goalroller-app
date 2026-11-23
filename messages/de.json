@@ -145,9 +145,9 @@
   "goalroller": {
     "title": "GoalRoller",
     "intro": "Die GoalRoller übersetzen die Favoritenquoten auf 5 mathematisch gewichtete Würfeln –für realistisch-spielerische Fußball- und Sport-Tipps.",
-    "favoriteExplanation": "Die GoalRoller würfeln immer auf den Favoriten. Eine gewürfelte 1 ist immer ein Sieg des Favoriten!",
+    "favoriteExplanation": "Die GoalRoller würfeln immer auf den Favorit. Eine gewürfelte 1 ist immer ein Sieg des Favoriten!",
     "subtitle": ".",
-    "setupTitle": "Deinen Tipp vorbereiten: Hole dir die Favoriten-Siegquote bei einem Spieleanbieter. ",
+    "setupTitle": "Deinen Tipp vorbereiten: Hole dir die Favoriten-Siegquote für deine Entscheidung bei einem Spieleanbieter. ",
     "setupBody": ".",
     "favoriteLabel": "Wer ist der Favorit?",
     "homeTeamLabel": ".",
