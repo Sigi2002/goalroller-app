@@ -511,7 +511,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "home"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-border bg-neutral-200/90 text-neutral-500 hover:bg-neutral-300/80 hover:text-neutral-700 active:bg-neutral-300 dark:bg-neutral-800/70 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -530,7 +530,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "away"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-border bg-neutral-200/90 text-neutral-500 hover:bg-neutral-300/80 hover:text-neutral-700 active:bg-neutral-300 dark:bg-neutral-800/70 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -559,7 +559,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "A"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-border bg-neutral-200/90 text-neutral-500 hover:bg-neutral-300/80 hover:text-neutral-700 active:bg-neutral-300 dark:bg-neutral-800/70 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -580,7 +580,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "B"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-border bg-neutral-200/90 text-neutral-500 hover:bg-neutral-300/80 hover:text-neutral-700 active:bg-neutral-300 dark:bg-neutral-800/70 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
                     }`}
                     disabled={busy}
                     onClick={() => {
