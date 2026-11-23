@@ -59,6 +59,11 @@ type GoalrollerToolProps = {
   imageUrls: GoalrollerRollImageUrls;
 };
 
+function isMeaningfulText(value: string): boolean {
+  const trimmed = value.trim();
+  return trimmed.length > 0 && trimmed !== ".";
+}
+
 export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
   const t = useTranslations("goalroller");
   const locale = useLocale();
@@ -335,6 +340,12 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
         : t("formatError")
       : null;
 
+  const showSetupBody = isMeaningfulText(t("setupBody"));
+  const showHomeTeamLabel = isMeaningfulText(t("homeTeamLabel"));
+  const showAwayTeamLabel = isMeaningfulText(t("awayTeamLabel"));
+  const oddsHelpText = t("oddsHelp");
+  const showOddsHelp = Boolean(oddsError) || isMeaningfulText(oddsHelpText);
+
   const dieName = die ? dieLabel(die.id) : null;
   const counts = die ? faceCounts(die) : null;
   const displayedImage =
@@ -461,17 +472,24 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
       <Card>
         <CardHeader>
           <CardTitle level="h2">{t("setupTitle")}</CardTitle>
-          <CardDescription className="text-base font-medium leading-relaxed">
-            {t("setupBody")}
-          </CardDescription>
+          {showSetupBody ? (
+            <CardDescription className="text-base font-medium leading-relaxed">
+              {t("setupBody")}
+            </CardDescription>
+          ) : null}
         </CardHeader>
         <CardContent className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.8fr)]">
           <div className="space-y-5">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="home-team" className="text-base font-semibold">
-                  {t("homeTeamLabel")}
-                </Label>
+                {showHomeTeamLabel ? (
+                  <Label
+                    htmlFor="home-team"
+                    className="text-base font-semibold"
+                  >
+                    {t("homeTeamLabel")}
+                  </Label>
+                ) : null}
                 <Input
                   id="home-team"
                   type="text"
@@ -483,9 +501,14 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="away-team" className="text-base font-semibold">
-                  {t("awayTeamLabel")}
-                </Label>
+                {showAwayTeamLabel ? (
+                  <Label
+                    htmlFor="away-team"
+                    className="text-base font-semibold"
+                  >
+                    {t("awayTeamLabel")}
+                  </Label>
+                ) : null}
                 <Input
                   id="away-team"
                   type="text"
@@ -608,7 +631,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                 placeholder={t("oddsPlaceholder")}
                 value={odds}
                 aria-invalid={Boolean(oddsError)}
-                aria-describedby="favorite-odds-help"
+                aria-describedby={showOddsHelp ? "favorite-odds-help" : undefined}
                 disabled={busy}
                 className={
                   die
@@ -636,12 +659,14 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                   setFeedback(null);
                 }}
               />
-              <p
-                id="favorite-odds-help"
-                className="text-muted-foreground text-base font-medium leading-relaxed"
-              >
-                {oddsError ?? t("oddsHelp")}
-              </p>
+              {showOddsHelp ? (
+                <p
+                  id="favorite-odds-help"
+                  className="text-muted-foreground text-base font-medium leading-relaxed"
+                >
+                  {oddsError ?? oddsHelpText}
+                </p>
+              ) : null}
             </div>
 
             {oddsError && (
