@@ -435,7 +435,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             className={`h-auto min-h-11 whitespace-normal py-2.5 text-base font-semibold ${
               mode === "football"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
-                : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                : "border-[3px] !border-yellow-400 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-yellow-400 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
             }`}
             disabled={busy}
             onClick={() => selectMode("football")}
@@ -449,7 +449,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
             className={`h-auto min-h-11 whitespace-normal py-2.5 text-base font-semibold ${
               mode === "duels"
                 ? "bg-goalroller-mode-active text-goalroller-ink hover:bg-goalroller-mode-active active:bg-goalroller-mode-active"
-                : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                : "border-[3px] !border-yellow-400 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-yellow-400 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
             }`}
             disabled={busy}
             onClick={() => selectMode("duels")}
@@ -512,7 +512,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "home"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -531,7 +531,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       favorite === "away"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -560,7 +560,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "A"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }`}
                     disabled={busy}
                     onClick={() => {
@@ -581,7 +581,7 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
                     className={`h-auto min-h-11 py-2.5 text-base font-semibold ${
                       duelFavoritePosition === "B"
                         ? "bg-goalroller-favorite-active text-goalroller-ink hover:bg-goalroller-favorite-active active:bg-goalroller-favorite-active"
-                        : "bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
+                        : "border-[3px] !border-red-500 bg-muted text-foreground hover:bg-secondary hover:text-secondary-foreground active:bg-secondary dark:!border-red-500 dark:bg-muted dark:hover:bg-secondary dark:hover:text-secondary-foreground dark:active:bg-secondary"
                     }`}
                     disabled={busy}
                     onClick={() => {
