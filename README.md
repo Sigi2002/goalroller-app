@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2026 Digistore24 Inc, St. Petersburg, USA — SPDX-License-Identifier: MIT -->
 
 # Digistore SAAS App Template
-
+Test, ob alles passt.
 A starter template for **SAAS applications that bill through Digistore24** —
 built so that you can extend it **together with an AI coding agent**, even without
 programming experience.
