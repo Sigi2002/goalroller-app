@@ -481,51 +481,56 @@ export function AppShell({
       (!item.featureKey || features?.[item.featureKey] === true),
   );
   const current = items.find((item) => isActive(pathname, item.href, items));
+  const hideNavigation = user.role !== "owner";
 
   return (
     <div className="min-h-screen">
-      {/* Sidebar — fixed from "lg" up, below that inside the Sheet (see below). */}
-      <aside className="bg-card fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r lg:flex">
-        <div className="flex h-14 items-center border-b px-4">
-          <BrandLink appName={appName} href="/dashboard" />
-        </div>
-        <div className="flex-1 overflow-y-auto p-3">
-          <NavLinks items={items} unreadHrefs={unreadHrefs} />
-        </div>
-        <SidebarFooter />
-      </aside>
+      {/* Sidebar — nur sichtbar, wenn Navigation nicht ausgeblendet ist */}
+      {!hideNavigation && (
+        <aside className="bg-card fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r lg:flex">
+          <div className="flex h-14 items-center border-b px-4">
+            <BrandLink appName={appName} href="/dashboard" />
+          </div>
+          <div className="flex-1 overflow-y-auto p-3">
+            <NavLinks items={items} unreadHrefs={unreadHrefs} />
+          </div>
+          <SidebarFooter />
+        </aside>
+      )}
 
-      <div className="lg:pl-60">
+      <div className={cn(!hideNavigation && "lg:pl-60")}>
         <header className="bg-background/80 sticky top-0 z-30 flex h-14 items-center gap-3 border-b px-4 backdrop-blur-sm sm:px-6">
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-                aria-label={tShell("openNavigation")}
-              >
-                <Menu aria-hidden />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-64 gap-0 p-0">
-              <div className="flex h-14 items-center border-b px-4">
-                <SheetTitle asChild>
-                  <div>
-                    <BrandLink appName={appName} href="/dashboard" />
-                  </div>
-                </SheetTitle>
-              </div>
-              <div className="flex-1 overflow-y-auto p-3">
-                <NavLinks
-                  items={items}
-                  unreadHrefs={unreadHrefs}
-                  onNavigate={() => setMobileOpen(false)}
-                />
-              </div>
-              <SidebarFooter />
-            </SheetContent>
-          </Sheet>
+          {!hideNavigation && (
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="lg:hidden"
+                  aria-label={tShell("openNavigation")}
+                >
+                  <Menu aria-hidden />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-64 gap-0 p-0">
+                <div className="flex h-14 items-center border-b px-4">
+                  <SheetTitle asChild>
+                    <div>
+                      <BrandLink appName={appName} href="/dashboard" />
+                    </div>
+                  </SheetTitle>
+                </div>
+                <div className="flex-1 overflow-y-auto p-3">
+                  <NavLinks
+                    items={items}
+                    unreadHrefs={unreadHrefs}
+                    onNavigate={() => setMobileOpen(false)}
+                  />
+                </div>
+                <SidebarFooter />
+              </SheetContent>
+            </Sheet>
+          )}
 
           {/* Quiet on purpose. This restates the <h1> that `PageHeader` puts
               forty pixels below it — useful when the page is scrolled, loud
