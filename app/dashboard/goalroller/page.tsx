@@ -67,7 +67,17 @@ export default async function GoalrollerPage() {
             </span>
           ) : undefined
         }
-      />
+      >
+        <div className="bg-card overflow-hidden rounded-lg border shadow-xs shrink-0">
+          <img
+            src="/goalroller/64x48bild.png"
+            alt={t("title")}
+            width={64}
+            height={48}
+            className="h-12 w-16 object-cover"
+          />
+        </div>
+      </PageHeader>
       {hasAccess ? (
         <GoalrollerTool imageUrls={imageUrls} />
       ) : (
