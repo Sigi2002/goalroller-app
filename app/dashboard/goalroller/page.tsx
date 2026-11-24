@@ -53,7 +53,20 @@ export default async function GoalrollerPage() {
   return (
     <>
       <PageHeader
-        title={t("title")}
+        title={
+          <span className="inline-flex items-center gap-2.5 align-middle">
+            <span>{t("title")}</span>
+            <span className="bg-card inline-flex shrink-0 overflow-hidden rounded-lg border shadow-xs">
+              <img
+                src="/goalroller/64x48bild.png"
+                alt={t("title")}
+                width={64}
+                height={48}
+                className="h-12 w-16 object-cover"
+              />
+            </span>
+          </span>
+        }
         descriptionBefore={
           <div className="text-foreground space-y-2.5 text-base leading-relaxed font-semibold md:text-lg">
             <p>{t("intro")}</p>
@@ -67,17 +80,7 @@ export default async function GoalrollerPage() {
             </span>
           ) : undefined
         }
-      >
-        <div className="bg-card overflow-hidden rounded-lg border shadow-xs shrink-0">
-          <img
-            src="/goalroller/64x48bild.png"
-            alt={t("title")}
-            width={64}
-            height={48}
-            className="h-12 w-16 object-cover"
-          />
-        </div>
-      </PageHeader>
+      />
       {hasAccess ? (
         <GoalrollerTool imageUrls={imageUrls} />
       ) : (
