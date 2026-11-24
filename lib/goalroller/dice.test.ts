@@ -168,8 +168,8 @@ describe("GoalRoller dice", () => {
       verdict: "favoriteWin",
     });
     expect(duelTipForOutcome("X", "A")).toEqual({
-      tip: "1",
-      verdict: "favoriteWin",
+      tip: "2",
+      verdict: "underdogWin",
     });
     expect(duelTipForOutcome("2", "A")).toEqual({
       tip: "2",
@@ -180,8 +180,8 @@ describe("GoalRoller dice", () => {
       verdict: "favoriteWin",
     });
     expect(duelTipForOutcome("X", "B")).toEqual({
-      tip: "2",
-      verdict: "favoriteWin",
+      tip: "1",
+      verdict: "underdogWin",
     });
     expect(duelTipForOutcome("2", "B")).toEqual({
       tip: "1",

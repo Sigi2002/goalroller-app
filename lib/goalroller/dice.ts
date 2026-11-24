@@ -148,7 +148,7 @@ export function duelTipForOutcome(
   const favoriteTip = favoritePosition === "A" ? "1" : "2";
   const underdogTip = favoritePosition === "A" ? "2" : "1";
 
-  return outcome === "2"
-    ? { tip: underdogTip, verdict: "underdogWin" }
-    : { tip: favoriteTip, verdict: "favoriteWin" };
+  return outcome === "1"
+    ? { tip: favoriteTip, verdict: "favoriteWin" }
+    : { tip: underdogTip, verdict: "underdogWin" };
 }

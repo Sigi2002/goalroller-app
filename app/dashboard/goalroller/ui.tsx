@@ -182,8 +182,16 @@ export function GoalrollerTool({ imageUrls }: GoalrollerToolProps) {
           outcome,
           selectedDuelFavoritePosition,
         );
-        tip = mapped.tip;
-        duelVerdict = mapped.verdict;
+        // Bei gewürfeltem "X" im Duell:
+        // Favorit Heim/A ("A") -> Tipp "2" (Auswärts/B)
+        // Favorit Auswärts/B ("B") -> Tipp "1" (Heim/A)
+        if (outcome === "X") {
+          tip = selectedDuelFavoritePosition === "A" ? "2" : "1";
+          duelVerdict = "underdogWin";
+        } else {
+          tip = mapped.tip;
+          duelVerdict = mapped.verdict;
+        }
       } else {
         const mapped = tipForOutcome(outcome, selectedFavorite);
         tip = mapped.tip;
